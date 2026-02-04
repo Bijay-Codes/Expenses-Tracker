@@ -18,21 +18,23 @@
     <form id="expense-form">
         <div class="form-header">
             <div class="form-amount">
-                <label for="amount" min="0">Amount</label>
+                <label for="amount" min="0">Amount: </label>
                 <input type="number" name="amount" placeholder="Enter Amount 0.00" required>
             </div>
             <div class="form-category"></div>
         </div>
         <div class="form-body">
             <div class="form-date-time">
-                <label for="current-date-time">Would you like to use the curent Date/Time for the Expense</label>
-                <input type="checkbox" name="current-date-time">
-                <label for="datetime">Date & Time</label>
-                <input type="datetime-local" class="datetime" name="datetime" required>
+                <label for="current-date-time">Would you like to use the curent Date/Time for the Expense: </label>
+                <input type="checkbox" name="current-date-time"class="checkbox-current-datetime">
+                <div class="date-time-input">
+                    <label for="datetime">Date & Time: </label>
+                    <input type="datetime-local" class="datetime" name="datetime" required>
+                </div>
             </div>
 
             <div class="form-payment-mode">
-                <label for="payment-mode">Payment Mode</label>
+                <label for="payment-mode">Payment Mode: </label>
                 <select name="payment-mode">
                     <option value="0" selected>Online Payment</option>
                     <option value="1">Offline Payment</option>
@@ -46,7 +48,7 @@
         </div>
 
         <div class="form-footer">
-            <label for="comment">Comment</label>
+            <label for="comment">Comment: </label>
             <textarea name="comment" placeholder="Add notes about this expense..."></textarea>
         </div>
         <button type="submit" class="add-button">Add Expense</button>

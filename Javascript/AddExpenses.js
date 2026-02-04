@@ -15,7 +15,7 @@ function renderCategory(list, classSelector) {
             html += `<option value="${category}">${category}</option>`
         }
     });
-    categoryTag.innerHTML = `<label for="category">Category</label>
+    categoryTag.innerHTML = `<label for="category">Category: </label>
                 <select name="category">${html}</select>`;
 }
 function renderTagsPane(list, classSelector) {
@@ -32,31 +32,44 @@ function renderTagsPane(list, classSelector) {
         });
     });
 }
-function addToList(tag){
+function addToList(tag) {
     const tagsMap = new Map();
-    if(tagsMap.has(tag)){
+    if (tagsMap.has(tag)) {
         deleteFromList(tag);
         renderTagsList('selected-tags')
-    }else{
+    } else {
         tagsMap.set(tag);
         tagsList.push(tag);
         renderTagsList('selected-tags');
     };
 };
-function renderTagsList(classSelector){
+function renderTagsList(classSelector) {
     const tagsHtml = document.querySelector(`.${classSelector}`);
     let html = 'Selected Tags (Max 4):';
-    tagsList.forEach(tag=>{
-        html+=`<span class="tags">${tag}</span>`;
+    tagsList.forEach(tag => {
+        html += `<span class="tags">${tag}</span>`;
     });
     tagsHtml.innerHTML = html;
 }
-function deleteFromList(tag){
-    tagsList.splice(indexOf(tag),1);
+function deleteFromList(tag) {
+    tagsList.splice(indexOf(tag), 1);
 };
-
-renderCategory(category, 'form-category')
-renderTagsPane(expenseTags, 'tags-list')
+function checkCustomDate() {
+    const checkbox = document.querySelector('.checkbox-current-datetime ');
+    const customDateTime = document.querySelector('.date-time-input');
+    checkbox.addEventListener('click', () => {
+        if (checkbox.checked) {
+            customDateTime.innerHTML = ''
+        }
+        else {
+            customDateTime.innerHTML = `<label for="datetime">Date & Time: </label>
+                    <input type="datetime-local" class="datetime" name="datetime" required>`
+        }
+    })
+}
+renderCategory(category, 'form-category');
+renderTagsPane(expenseTags, 'tags-list');
+checkCustomDate();
 expenseForm.addEventListener('submit', (submit) => {
     submit.preventDefault();
     const data = new FormData(expenseForm);
