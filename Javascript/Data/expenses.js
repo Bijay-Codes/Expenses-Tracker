@@ -1,0 +1,1 @@
+export const collectiveExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
