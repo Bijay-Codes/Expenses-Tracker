@@ -4,5 +4,5 @@ if(key){
 }
 else{
     localStorage.setItem('expenses',JSON.stringify(data))
-}
-}
+};
+};

@@ -17,7 +17,7 @@ function renderCategory(list, classSelector) {
     });
     categoryTag.innerHTML = `<label for="category">Category: </label>
                 <select name="category">${html}</select>`;
-}
+};
 function renderTagsPane(list, classSelector) {
     const tagsPane = document.querySelector(`.${classSelector}`);
     let html = '';
@@ -31,14 +31,12 @@ function renderTagsPane(list, classSelector) {
             addToList(button.innerText);
         });
     });
-}
+};
 function addToList(tag) {
-    const tagsMap = new Map();
-    if (tagsMap.has(tag)) {
+    if (tagsList.includes(tag)) {
         deleteFromList(tag);
-        renderTagsList('selected-tags')
-    } else {
-        tagsMap.set(tag);
+        renderTagsList('selected-tags');
+    } else if(tagsList.length<4) {
         tagsList.push(tag);
         renderTagsList('selected-tags');
     };
@@ -50,9 +48,9 @@ function renderTagsList(classSelector) {
         html += `<span class="tags">${tag}</span>`;
     });
     tagsHtml.innerHTML = html;
-}
+};
 function deleteFromList(tag) {
-    tagsList.splice(indexOf(tag), 1);
+    tagsList.splice(tagsList.indexOf(tag), 1);
 };
 function checkCustomDate() {
     const checkbox = document.querySelector('.checkbox-current-datetime ');
@@ -66,7 +64,7 @@ function checkCustomDate() {
                     <input type="datetime-local" class="datetime" name="datetime" required>`
         }
     })
-}
+};
 renderCategory(category, 'form-category');
 renderTagsPane(expenseTags, 'tags-list');
 checkCustomDate();
