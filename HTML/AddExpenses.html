@@ -15,19 +15,13 @@
     </div>
 
     <h1>Welcome to the Page. Here you can add your Expenses</h1>
-    <form class="expense-form">
+    <form id="expense-form">
         <div class="form-header">
             <div class="form-amount">
-                <label for="amount">Amount</label>
+                <label for="amount" min="0">Amount</label>
                 <input type="number" name="amount" placeholder="Enter Amount 0.00" required>
             </div>
-
-            <div class="form-category">
-                <label for="category">Category</label>
-                <select name="category">
-                    <option value=""></option>
-                </select>
-            </div>
+            <div class="form-category"></div>
         </div>
         <div class="form-body">
             <div class="form-date-time">
@@ -40,7 +34,8 @@
             <div class="form-payment-mode">
                 <label for="payment-mode">Payment Mode</label>
                 <select name="payment-mode">
-                    <option value=""></option>
+                    <option value="0" selected>Online Payment</option>
+                    <option value="1">Offline Payment</option>
                 </select>
             </div>
 
@@ -49,7 +44,7 @@
                 <div class="tags-list"></div>
             </div>
         </div>
-        
+
         <div class="form-footer">
             <label for="comment">Comment</label>
             <textarea name="comment" placeholder="Add notes about this expense..."></textarea>
@@ -57,5 +52,6 @@
         <button type="submit" class="add-button">Add Expense</button>
     </form>
 </body>
+<script type="module" src="../Javascript/AddExpenses.js"></script>
 
 </html>
