@@ -36,7 +36,7 @@ function addToList(tag) {
     if (tagsList.includes(tag)) {
         deleteFromList(tag);
         renderTagsList('selected-tags');
-    } else if(tagsList.length<4) {
+    } else if (tagsList.length < 4) {
         tagsList.push(tag);
         renderTagsList('selected-tags');
     };
@@ -77,5 +77,5 @@ expenseForm.addEventListener('submit', (submit) => {
     expenseData.tags = tagsList;
     collectiveExpenses.unshift(expenseData);
     console.log(collectiveExpenses);
-    saveToStorage(collectiveExpenses,'expenses');
+    saveToStorage(collectiveExpenses, 'expenses');
 });
