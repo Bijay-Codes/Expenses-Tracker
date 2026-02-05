@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../CSS/Home.css">
 </head>
 
 <body>
@@ -13,42 +14,42 @@
         <div class="tabs"><a href="./AddExpenses.html">Add Expenses</a></div>
         <div class="tabs selected">Home</div>
     </div>
-    <form id="edit-pane">
-        <div class="edit-pane">
-            <div class="edit-header">
-                <input type="number" name="amount-input" class="amount-input">
-                <select class="expense-category">
-                    <option value=""></option>
+    <form id="edit-pane" class="edit-pane hidden">
+
+        <div class="edit-header">
+            <input type="number" name="amount-input" class="amount-input">
+            <select class="expense-category">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="edit-body">
+            <div class="form-date-time">
+                <label for="datetime">Date & Time: </label>
+                <input type="datetime-local" class="datetime" name="datetime" required>
+            </div>
+
+            <div class="form-payment-mode">
+                <label for="payment-mode">Payment Mode: </label>
+                <select name="payment-mode">
+                    <option value="0" selected>Online Payment</option>
+                    <option value="1">Offline Payment</option>
                 </select>
             </div>
-            <div class="edit-body">
-                <div class="form-date-time">
-                    <label for="datetime">Date & Time: </label>
-                    <input type="datetime-local" class="datetime" name="datetime" required>
-                </div>
 
-                <div class="form-payment-mode">
-                    <label for="payment-mode">Payment Mode: </label>
-                    <select name="payment-mode">
-                        <option value="0" selected>Online Payment</option>
-                        <option value="1">Offline Payment</option>
-                    </select>
-                </div>
-
-                <div class="tags-section">
-                    <div class="selected-tags">Selected Tags (Max 4): </div>
-                    <div class="tags-list"></div>
-                </div>
-            </div>
-            <div class="edit-footer">
-                <label for="comment">Comment: </label>
-                <textarea name="comment" placeholder="Add notes about this expense..."></textarea>
-                <div class="footer-buttons">
-                    <button type="submit">Submit</button>
-                    <button type="reset">Cancel</button>
-                </div>
+            <div class="tags-section">
+                <div class="selected-tags">Selected Tags (Max 4): </div>
+                <div class="tags-list"></div>
             </div>
         </div>
+        <div class="edit-footer">
+            <label for="comment">Comment: </label>
+            <textarea name="comment" placeholder="Add notes about this expense..."></textarea>
+            <div class="footer-buttons">
+                <button type="submit" class="visibility-buttons submit-button">Submit</button>
+                <button type="button" class="visibility-buttons cancel-button">Cancel</button>
+            </div>
+        </div>
+
     </form>
     <div class="expenses-pane"></div>
 

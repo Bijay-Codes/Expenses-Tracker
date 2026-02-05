@@ -27,17 +27,40 @@ function renderExpenses() {
     tagsPane.innerHTML = html;
 }
 renderExpenses();
+renderEditPane();
+addClassToForm();
 function isLocked(timeCreated) {
     const lockTime = 24 * 60 * 60 * 1000
     return Date.now() - timeCreated > lockTime;
 }
 function renderButtons(timeCreated) {
     if (isLocked(timeCreated)) {
-        return `<button type="button" class="locked">Save Changes 🔒</button>
-            <button type="button" class="locked">Cancel 🔒</button>`
+        return `<button type="button" class="locked">Edit 🔒</button>
+            <button type="button" class="locked">Delete 🔒</button>`
     }
     else {
-        return `<button type="submit"class="save-button">Save Changes</button>
-            <button type="reset"class="cancel-button">Cancel</button>`
-    }
-}
+        return `<button type="submit"class="edit-button">Edit</button>
+            <button type="reset"class="Delete-button">Delete</button>`
+    };
+};
+function addClassToForm() {
+    const editPane = document.getElementById('edit-pane');
+    const buttons = document.querySelectorAll('.visibility-buttons');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            editPane.classList.add('hidden');
+            editPane.classList.remove('editing');
+        });
+    });
+};
+
+function renderEditPane() {
+    const editButton = document.querySelectorAll('.edit-button');
+    const editPane = document.getElementById('edit-pane');
+    editButton.forEach(btn => {
+        btn.addEventListener('click', () => {
+            editPane.classList.remove('hidden');
+            editPane.classList.add('editing');
+        });
+    })
+};
