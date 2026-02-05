@@ -75,7 +75,7 @@ expenseForm.addEventListener('submit', (submit) => {
     expenseData.id = crypto.randomUUID();
     expenseData.createdAt = Date.now();
     expenseData.tags = tagsList;
-    collectiveExpenses.push(expenseData);
+    collectiveExpenses.unshift(expenseData);
     console.log(collectiveExpenses);
     saveToStorage(collectiveExpenses,'expenses');
 });

@@ -18,7 +18,7 @@
     <form id="expense-form">
         <div class="form-header">
             <div class="form-amount">
-                <label for="amount" min="0">Amount: </label>
+                <label for="amount">Amount: </label>
                 <input type="number" name="amount" placeholder="Enter Amount 0.00" required>
             </div>
             <div class="form-category"></div>
@@ -26,7 +26,7 @@
         <div class="form-body">
             <div class="form-date-time">
                 <label for="current-date-time">Would you like to use the curent Date/Time for the Expense: </label>
-                <input type="checkbox" name="current-date-time"class="checkbox-current-datetime">
+                <input type="checkbox" name="checkbox_datetime"class="checkbox-current-datetime">
                 <div class="date-time-input">
                     <label for="datetime">Date & Time: </label>
                     <input type="datetime-local" class="datetime" name="datetime" required>
@@ -35,7 +35,7 @@
 
             <div class="form-payment-mode">
                 <label for="payment-mode">Payment Mode: </label>
-                <select name="payment-mode">
+                <select name="paymentMode">
                     <option value="0" selected>Online Payment</option>
                     <option value="1">Offline Payment</option>
                 </select>

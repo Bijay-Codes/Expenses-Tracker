@@ -1,6 +1,8 @@
-import { saveToStorage } from "./utility.js"
+import { saveToStorage,formatDate } from "./utility.js"
 import { collectiveExpenses } from "./Data/expenses.js"
 const form = document.getElementById('edit-pane');
+console.log(collectiveExpenses);;
+
 function renderExpenses() {
     const tagsPane = document.querySelector('.expenses-pane');
     let html = '';
@@ -12,8 +14,8 @@ function renderExpenses() {
             </div>
 
             <div class="expense-body">
-                <span class="expense-date-time">${elem.dateTime}</span>
-                <span class="expense-mode online">${elem.paymentMode} Payment</span>
+                <span class="expense-date-time">${formatDate(elem.datetime)}</span>
+                <span class="expense-mode online">${elem.paymentMode==='0'? 'Online':'Offline'} Payment</span>
             </div>
             <p class="expense-comment">
                 ${elem.comment}
