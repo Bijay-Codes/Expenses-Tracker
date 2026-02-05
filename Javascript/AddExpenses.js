@@ -76,5 +76,6 @@ expenseForm.addEventListener('submit', (submit) => {
     expenseData.createdAt = Date.now();
     expenseData.tags = tagsList;
     collectiveExpenses.push(expenseData);
-    saveToStorage(collectiveExpenses);
+    console.log(collectiveExpenses);
+    saveToStorage(collectiveExpenses,'expenses');
 });
