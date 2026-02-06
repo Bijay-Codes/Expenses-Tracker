@@ -82,6 +82,6 @@ expenseForm.addEventListener('submit', (submit) => {
         expenseData.datetime = dayjs(expenseData.createdAt).format('YYYY-MM-DDTHH:mm');
     };
     collectiveExpenses.unshift(expenseData);
-    console.log(collectiveExpenses);
     saveToStorage(collectiveExpenses, 'expenses');
+    submit.target.reset();
 });

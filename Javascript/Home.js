@@ -162,4 +162,4 @@ function deleteExpense(id){
             reRender();
         }
     })
-}
+};
