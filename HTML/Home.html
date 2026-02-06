@@ -14,23 +14,20 @@
         <div class="tabs"><a href="./AddExpenses.html">Add Expenses</a></div>
         <div class="tabs selected">Home</div>
     </div>
-    <form id="edit-pane" class="edit-pane hidden">
-
+    <div id="edit-pane" class="edit-pane hidden">
         <div class="edit-header">
-            <input type="number" name="amount-input" class="amount-input">
-            <select class="expense-category">
-                <option value=""></option>
-            </select>
+            <input type="number" name="amount-input" class="inputs amount-input" data-input-type="amount">
+            <div class="expense-category">
+            </div>
         </div>
         <div class="edit-body">
-            <div class="form-date-time">
+            <div class="date-time">
                 <label for="datetime">Date & Time: </label>
-                <input type="datetime-local" class="datetime" name="datetime" required>
+                <input type="datetime-local" class="inputs datetime" data-input-type="datetime" name="datetime">
             </div>
-
-            <div class="form-payment-mode">
+            <div class="payment-mode">
                 <label for="payment-mode">Payment Mode: </label>
-                <select name="payment-mode">
+                <select name="payment-mode" class="inputs payment-mode" data-input-type="payment-mode">
                     <option value="0" selected>Online Payment</option>
                     <option value="1">Offline Payment</option>
                 </select>
@@ -43,14 +40,14 @@
         </div>
         <div class="edit-footer">
             <label for="comment">Comment: </label>
-            <textarea name="comment" placeholder="Add notes about this expense..."></textarea>
+            <textarea name="comment" class="inputs comment" data-input-type="comment"
+                placeholder="Add notes about this expense..."></textarea>
             <div class="footer-buttons">
                 <button type="submit" class="visibility-buttons submit-button">Submit</button>
                 <button type="button" class="visibility-buttons cancel-button">Cancel</button>
             </div>
         </div>
-
-    </form>
+    </div>
     <div class="expenses-pane"></div>
 
     <script type="module" src="../Javascript/Home.js"></script>

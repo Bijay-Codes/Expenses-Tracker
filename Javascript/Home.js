@@ -1,8 +1,9 @@
-import { saveToStorage, formatDate } from "./utility.js"
+import { saveToStorage, formatDate, renderCategory, renderTagsPane } from "./utility.js"
 import { collectiveExpenses } from "./Data/expenses.js"
-const form = document.getElementById('edit-pane');
-console.log(collectiveExpenses);;
+import { category } from "./Data/category.js";
+import { expenseTags } from "./Data/tags.js";
 
+let editId = '';
 function renderExpenses() {
     const tagsPane = document.querySelector('.expenses-pane');
     let html = '';
@@ -21,26 +22,33 @@ function renderExpenses() {
                 ${elem.comment}
             </p>
             <div class="expense-tags">${elem.tags}</div>
-            <div class="card-buttons">${renderButtons(elem.createdAt)}</div>
+            <div class="card-buttons">${renderButtons(elem.createdAt, elem.id)}</div>
         </div>`
     });
     tagsPane.innerHTML = html;
 }
-renderExpenses();
-renderEditPane();
-addClassToForm();
+reRender();
+function reRender() {
+    renderExpenses();
+    renderEditPane();
+    addClassToForm();
+    renderCategory(category, 'expense-category');
+    renderTagsPane(expenseTags, 'tags-list')
+    submitButton();
+}
+//renderEditPaneCategory();
 function isLocked(timeCreated) {
     const lockTime = 24 * 60 * 60 * 1000
     return Date.now() - timeCreated > lockTime;
 }
-function renderButtons(timeCreated) {
+function renderButtons(timeCreated, id) {
     if (isLocked(timeCreated)) {
         return `<button type="button" class="locked">Edit 🔒</button>
             <button type="button" class="locked">Delete 🔒</button>`
     }
     else {
-        return `<button type="submit"class="edit-button">Edit</button>
-            <button type="reset"class="Delete-button">Delete</button>`
+        return `<button class="edit-button"data-expense-id="${id}">Edit</button>
+            <button class="Delete-button">Delete</button>`
     };
 };
 function addClassToForm() {
@@ -59,8 +67,80 @@ function renderEditPane() {
     const editPane = document.getElementById('edit-pane');
     editButton.forEach(btn => {
         btn.addEventListener('click', () => {
+            editId = btn.dataset.expenseId;
+            addOldData();
             editPane.classList.remove('hidden');
             editPane.classList.add('editing');
         });
-    })
+    });
+};
+
+function submitButton() {
+    const btn = document.querySelector('.submit-button');
+    btn.addEventListener('click', () => {
+        const editData = getValuesFromEditPane();
+        collectiveExpenses.forEach(exp=>{
+            if(exp.id===editId){
+                Object.assign(exp,editData);
+                saveToStorage(collectiveExpenses,'expenses');
+            };
+        });
+        reRender();
+    });
+};
+/* notice i could have rendered the category and tags using just 1 for loop  or just 
+have copy pasted it but well it will just be a pain to write the code again and its not a good
+practice to write the same code 2 times manually... 
+Also i want to categorize what each function does rather than doing 2 tasks i prefer that the
+function does just 1 task that its given correctly and also in my opinion it will help me in
+debugging in some way or if i want to change something i wont break multiple stuff.
+*/
+function addOldData() {
+    const oldData = getEditingExpense(editId);
+    const inputs = document.querySelectorAll('.inputs');
+    inputs.forEach(inp => {
+        let dataset = inp.dataset.inputType;
+        if (dataset === 'amount') {
+            inp.value = oldData.amount;
+        }
+        else if (dataset === 'datetime') {
+            inp.value = oldData.datetime;
+        }
+        else if (dataset === 'payment-mode') {
+            inp.value = oldData.paymentMode;
+        }
+        else if (dataset === 'comment') {
+            inp.innerText = oldData.comment;
+        };
+    });
+}
+function getValuesFromEditPane() {
+    const updatedValue = {};
+    const inputs = document.querySelectorAll('.inputs');
+    inputs.forEach(inp => {
+        let dataset = inp.dataset.inputType;
+        if (dataset === 'amount') {
+            updatedValue.amount = inp.value;
+        }
+        else if (dataset === 'datetime') {
+            updatedValue.datetime = inp.value;
+        }
+        else if (dataset === 'payment-mode') {
+            updatedValue.paymentMode = inp.value;
+        }
+        else if (dataset === 'comment') {
+            updatedValue.comment = inp.value;
+        };
+    });
+    return updatedValue;
+};
+function getEditingExpense(id) {
+    let selectedExpense;
+    for (let i = 0; i < collectiveExpenses.length; i++) {
+        if (collectiveExpenses[i].id === id) {
+            selectedExpense = collectiveExpenses[i];
+            break;
+        };
+    };
+    return selectedExpense;
 };
