@@ -1,4 +1,4 @@
-import { saveToStorage, formatDate, renderCategory, renderTagsPane } from "./utility.js"
+import { saveToStorage, formatDate, renderCategory, renderTagsPane, deleteFromList } from "./utility.js"
 import { collectiveExpenses } from "./Data/expenses.js"
 import { category } from "./Data/category.js";
 import { expenseTags } from "./Data/tags.js";
@@ -35,6 +35,7 @@ function reRender() {
     renderCategory(category, 'expense-category');
     renderTagsPane(expenseTags, 'tags-list')
     submitButton();
+    deleteBtn();
 }
 //renderEditPaneCategory();
 function isLocked(timeCreated) {
@@ -48,7 +49,7 @@ function renderButtons(timeCreated, id) {
     }
     else {
         return `<button class="edit-button"data-expense-id="${id}">Edit</button>
-            <button class="Delete-button">Delete</button>`
+            <button class="delete-button"data-expense-id="${id}">Delete</button>`
     };
 };
 function addClassToForm() {
@@ -144,3 +145,21 @@ function getEditingExpense(id) {
     };
     return selectedExpense;
 };
+
+function deleteBtn(){
+    const deleteButton = document.querySelectorAll('.delete-button');
+    deleteButton.forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            deleteExpense(btn.dataset.expenseId);
+        });
+    });
+};
+function deleteExpense(id){
+    collectiveExpenses.forEach((exp,ind)=>{
+        if(exp.id===id){
+            collectiveExpenses.splice(ind,1);
+            saveToStorage(collectiveExpenses,'expenses')
+            reRender();
+        }
+    })
+}
