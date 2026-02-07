@@ -26,7 +26,7 @@ function renderExpenses() {
         </div>`
     });
     tagsPane.innerHTML = html;
-}
+};
 reRender();
 function reRender() {
     renderExpenses();
@@ -36,12 +36,12 @@ function reRender() {
     renderTagsPane(expenseTags, 'tags-list')
     submitButton();
     deleteBtn();
-}
+};
 //renderEditPaneCategory();
 function isLocked(timeCreated) {
     const lockTime = 24 * 60 * 60 * 1000
     return Date.now() - timeCreated > lockTime;
-}
+};
 function renderButtons(timeCreated, id) {
     if (isLocked(timeCreated)) {
         return `<button type="button" class="locked">Edit 🔒</button>
