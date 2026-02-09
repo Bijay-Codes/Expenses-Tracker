@@ -3,8 +3,6 @@ import { category } from "./Data/category.js";
 import { saveToStorage, renderCategory, tagsList, renderTagsPane, formatDate } from "./utility.js";
 import { collectiveExpenses } from "./Data/expenses.js";
 const expenseForm = document.getElementById('expense-form');
-const newCategory = [];
-const newTags = [];
 const errorBox = document.querySelector('.error-box')
 // function renderCategory(list, classSelector) {
 //     const categoryTag = document.querySelector(`.${classSelector}`);
@@ -71,7 +69,7 @@ function checkCustomDate() {
         }
     })
 };
-renderCategory(category, 'form-category');
+renderCategory(category, 'category-list');
 renderTagsPane(expenseTags, 'tags-list');
 checkCustomDate();
 expenseForm.addEventListener('submit', (submit) => {

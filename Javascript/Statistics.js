@@ -118,7 +118,7 @@ function paymentSection(domClass) {
     <div class="online-spent">You Spent a Total of 
     ₹${data.payment.paymentOnline} By Online Payment (About ${onlinePercent}% of Transactions)</div>
     <div class="offline-spent">You Spent a Total of 
-    ₹${data.payment.paymentOffline} By Online Payment (About ${offlinePercent}% of Transactions)</div>
+    ₹${data.payment.paymentOffline} By Offline Payment (About ${offlinePercent}% of Transactions)</div>
     `
 };
 categorySection(DOMS.categorySection);

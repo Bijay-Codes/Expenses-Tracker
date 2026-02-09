@@ -1,8 +1,7 @@
-import { saveToStorage, formatDate, renderCategory, renderTagsPane, deleteFromList } from "./utility.js"
+import { saveToStorage, formatDate, renderCategory, renderTagsPane, tagsList, renderTagsList } from "./utility.js"
 import { collectiveExpenses } from "./Data/expenses.js"
 import { category } from "./Data/category.js";
 import { expenseTags } from "./Data/tags.js";
-
 let editId = '';
 function renderExpenses() {
     const tagsPane = document.querySelector('.expenses-pane');
@@ -21,7 +20,7 @@ function renderExpenses() {
             <p class="expense-comment">
                 ${elem.comment}
             </p>
-            <div class="expense-tags">${elem.tags}</div>
+            <span class="expense-tags">${elem.tags}</span>
             <div class="card-buttons">${renderButtons(elem.createdAt, elem.id)}</div>
         </div>`
     });
@@ -32,7 +31,7 @@ function reRender() {
     renderExpenses();
     renderEditPane();
     addClassToForm();
-    renderCategory(category, 'expense-category');
+    renderCategory(category, 'category-list');
     renderTagsPane(expenseTags, 'tags-list')
     submitButton();
     deleteBtn();
@@ -80,10 +79,10 @@ function submitButton() {
     const btn = document.querySelector('.submit-button');
     btn.addEventListener('click', () => {
         const editData = getValuesFromEditPane();
-        collectiveExpenses.forEach(exp=>{
-            if(exp.id===editId){
-                Object.assign(exp,editData);
-                saveToStorage(collectiveExpenses,'expenses');
+        collectiveExpenses.forEach(exp => {
+            if (exp.id === editId) {
+                Object.assign(exp, editData);
+                saveToStorage(collectiveExpenses, 'expenses');
             };
         });
         reRender();
@@ -99,10 +98,17 @@ debugging in some way or if i want to change something i wont break multiple stu
 function addOldData() {
     const oldData = getEditingExpense(editId);
     const inputs = document.querySelectorAll('.inputs');
+    tagsList.length = 0;
+    oldData.tags.forEach(tag => {
+        tagsList.push(tag);
+    });
     inputs.forEach(inp => {
         let dataset = inp.dataset.inputType;
         if (dataset === 'amount') {
             inp.value = oldData.amount;
+        }
+        else if (dataset === 'category') {
+            inp.value = oldData.category;
         }
         else if (dataset === 'datetime') {
             inp.value = oldData.datetime;
@@ -111,9 +117,11 @@ function addOldData() {
             inp.value = oldData.paymentMode;
         }
         else if (dataset === 'comment') {
-            inp.innerText = oldData.comment;
+            inp.value = oldData.comment;
         };
     });
+    renderTagsList('selected-tags');
+    renderTagsPane(expenseTags, 'tags-list');
 }
 function getValuesFromEditPane() {
     const updatedValue = {};
@@ -122,6 +130,9 @@ function getValuesFromEditPane() {
         let dataset = inp.dataset.inputType;
         if (dataset === 'amount') {
             updatedValue.amount = inp.value;
+        }
+        else if(dataset==='category'){
+            updatedValue.category = inp.value;
         }
         else if (dataset === 'datetime') {
             updatedValue.datetime = inp.value;
@@ -133,6 +144,7 @@ function getValuesFromEditPane() {
             updatedValue.comment = inp.value;
         };
     });
+    updatedValue.tags = tagsList;
     return updatedValue;
 };
 function getEditingExpense(id) {
@@ -146,19 +158,19 @@ function getEditingExpense(id) {
     return selectedExpense;
 };
 
-function deleteBtn(){
+function deleteBtn() {
     const deleteButton = document.querySelectorAll('.delete-button');
-    deleteButton.forEach(btn=>{
-        btn.addEventListener('click',()=>{
+    deleteButton.forEach(btn => {
+        btn.addEventListener('click', () => {
             deleteExpense(btn.dataset.expenseId);
         });
     });
 };
-function deleteExpense(id){
-    collectiveExpenses.forEach((exp,ind)=>{
-        if(exp.id===id){
-            collectiveExpenses.splice(ind,1);
-            saveToStorage(collectiveExpenses,'expenses')
+function deleteExpense(id) {
+    collectiveExpenses.forEach((exp, ind) => {
+        if (exp.id === id) {
+            collectiveExpenses.splice(ind, 1);
+            saveToStorage(collectiveExpenses, 'expenses')
             reRender();
         }
     })

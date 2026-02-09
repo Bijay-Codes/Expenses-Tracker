@@ -1,11 +1,141 @@
-.hidden{
+:root {
+    --prim-bg-color: #0f0f1e;
+    --sec-bg-color: #1a1a2e;
+    --main-bg-color: #2a2a3e;
+    --prim-border-color: #3a3a4e;
+    --prim-text: #e4e4e4;
+    --sec-text: #a8a8a8;
+    --main-text: #b9bbbe;
+    --comment-text: #c4c4c4;
+    /* Accent colors */
+    --acc1: #5865f2;
+    --acc2: #4752c4;
+    /* for buttons/ status/ locked buttons */
+    --prim-green: #57f287;
+    --sec-orange: #faa61a;
+    --sec-red: #ed4245;
+    --prim-grey: #6b7280;
+}
+
+body {
+    padding: 0px;
+    background-color: var(--prim-bg-color);
+    color: var(--prim-text);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar {
+    background-color: var(--sec-bg-color);
+    color: var(--sec-text);
+    padding: 1%;
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+}
+
+.tabs {
+    background-color: var(--sec-bg-color);
+    color: var(--sec-text);
+}
+
+.edit-pane {
+    background-color: var(--main-bg-color);
+    color: var(--sec-text);
+    height: fit-content;
+    width: fit-content;
+}
+
+.expenses-pane {
+    background-color: var(--sec-bg-color);
+    color: var(--sec-text);
+    display: grid;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.expense-card {
+    border: 1px solid var(--prim-border-color);
+    border-radius: 10%;
+
+}
+
+.edit-button {
+    background-color: var(--sec-orange);
+    color: var(--sec-text);
+    border: 1px solid var(--prim-border-color);
+    border-radius: 16%;
+
+}
+
+.submit-button {
+    background-color: var(--prim-green);
+    color: var(--sec-text);
+    border: 1.5px solid var(--prim-border-color);
+    border-radius: 16%;
+
+}
+
+.cancel-button {
+    background-color: var(--sec-red);
+    color: var(--sec-text);
+    border: 1.5px solid var(--prim-border-color);
+    border-radius: 16%;
+
+}
+
+.delete-button {
+    background-color: var(--sec-red);
+    color: var(--sec-text);
+    border: 1px solid var(--prim-border-color);
+    border-radius: 16%;
+
+}
+
+.locked {
+    background-color: var(--prim-grey);
+    color: var(--sec-text);
+    border: 1px solid var(--prim-border-color);
+    border-radius: 16%;
+
+}
+
+.tags-button {
+    background-color: var(--main-bg-color);
+    color: var(--sec-text);
+    border: 1px solid var(--prim-border-color);
+    border-radius: 16%;
+}
+
+.expense-tags {
+    background-color: var(--main-bg-color);
+    color: var(--sec-text);
+    border: 1px solid var(--prim-border-color);
+    border-radius: 16%;
+
+}
+
+.tags-list {
+    background-color: var(--sec-bg-color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.tags-button.selected{
+    background-color: var(--prim-green);
+}
+.expense-comment {
+    color: var(--comment-text);
+}
+
+.hidden {
     display: none;
 }
-.editing{
+
+.editing {
     display: block;
     position: fixed;
     margin: auto;
     padding: 50px;
-    background-color: aquamarine;
+    background-color: var(--sec-bg-color);
     opacity: 0.9;
 }

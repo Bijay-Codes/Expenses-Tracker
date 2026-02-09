@@ -1,5 +1,6 @@
 import "https://cdn.jsdelivr.net/npm/dayjs@1.11.19/dayjs.min.js";
-export const tagsList = []
+import { expenseTags } from "./Data/tags.js";
+export let tagsList = [];
 export function saveToStorage(data, key) {
     localStorage.setItem(key, JSON.stringify(data));
 };
@@ -17,15 +18,30 @@ export function renderCategory(list, classSelector) {
             html += `<option value="${category}">${category}</option>`
         }
     });
-    categoryTag.innerHTML = `<label for="category">Category: </label>
-                <select name="category">${html}</select>`;
+    categoryTag.innerHTML = html;
 };
 
+// export function renderTagsPane(list, classSelector) {
+//     const tagsPane = document.querySelector(`.${classSelector}`);
+//     let html = '';
+//     list.forEach(tag => {
+//         html += `<button type="button"class="tags-button">${tag}</button>`;
+//     })
+//     tagsPane.innerHTML = html;
+//     const tagsButtons = document.querySelectorAll('.tags-button');
+//     tagsButtons.forEach(button => {
+//         button.addEventListener('click', () => {
+//             addToList(button.innerText);
+//         });
+//     });
+// };
 export function renderTagsPane(list, classSelector) {
     const tagsPane = document.querySelector(`.${classSelector}`);
     let html = '';
     list.forEach(tag => {
-        html += `<button type="button"class="tags-button">${tag}</button>`;
+        const isSelected = tagsList.includes(tag);
+        const selectedClass = isSelected ? ' selected' : '';
+        html += `<button type="button" class="tags-button${selectedClass}">${tag}</button>`;
     })
     tagsPane.innerHTML = html;
     const tagsButtons = document.querySelectorAll('.tags-button');
@@ -35,7 +51,6 @@ export function renderTagsPane(list, classSelector) {
         });
     });
 };
-
 export function addToList(tag) {
     if (tagsList.includes(tag)) {
         deleteFromList(tag);
@@ -44,6 +59,7 @@ export function addToList(tag) {
         tagsList.push(tag);
         renderTagsList('selected-tags');
     };
+    renderTagsPane(expenseTags, 'tags-list');
 };
 
 export function renderTagsList(classSelector) {
