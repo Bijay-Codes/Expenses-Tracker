@@ -22,20 +22,6 @@ export function renderCategory(list, classSelector) {
     categoryTag.innerHTML = html;
 };
 
-// export function renderTagsPane(list, classSelector) {
-//     const tagsPane = document.querySelector(`.${classSelector}`);
-//     let html = '';
-//     list.forEach(tag => {
-//         html += `<button type="button"class="tags-button">${tag}</button>`;
-//     })
-//     tagsPane.innerHTML = html;
-//     const tagsButtons = document.querySelectorAll('.tags-button');
-//     tagsButtons.forEach(button => {
-//         button.addEventListener('click', () => {
-//             addToList(button.innerText);
-//         });
-//     });
-// };
 export function renderTagsPane(list, classSelector) {
     const tagsPane = document.querySelector(`.${classSelector}`);
     let html = '';
@@ -76,16 +62,37 @@ export function deleteFromList(tag) {
     tagsList.splice(tagsList.indexOf(tag), 1);
 };
 export function filterByMonth() {
-    const input = document.querySelector('.filter-selector');
+    const monthInp = document.querySelector('.filter-selector');
+    const yearInp = document.querySelector('.filter-selector-year');
     let filterData = [];
-    if(input.value==='all'){
-        filterData = collectiveExpenses;
-        return filterData;
-    }else{
-        return collectiveExpenses.filter(data=>{
-            let date = data.datetime.slice(5,7);
-            return date===input.value;
+    if (monthInp.value === 'all') {
+        return filterData = collectiveExpenses.filter(data => {
+            let year = dayjs(data.datetime).format('YYYY');
+            return year === yearInp.value;
+        });
+    } else {
+        return collectiveExpenses.filter(data => {
+            let month = dayjs(data.datetime).format('MM');
+            let year = dayjs(data.datetime).format('YYYY');
+            return month === monthInp.value && year === yearInp.value;
         })
     }
-    
-}
+
+};
+
+export function oldestAndLatestExpense() {
+    const date = {
+        oldest: Number(dayjs(collectiveExpenses[0].datetime).format('YYYY')),
+        latest: Number(dayjs().format('YYYY'))
+    }
+    collectiveExpenses.forEach(data => {
+        let year = Number(dayjs(data.datetime).format('YYYY'));
+        if (year < date.oldest) {
+            date.oldest = year;
+        }
+        else if (date.latest < year) {
+            date.latest = year;
+        }
+    });
+    return date
+};

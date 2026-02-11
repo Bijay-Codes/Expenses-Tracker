@@ -1,12 +1,19 @@
-import { saveToStorage, formatDate, filterByMonth, renderCategory, renderTagsPane, tagsList, renderTagsList } from "./utility.js"
-import { collectiveExpenses } from "./Data/expenses.js"
+import * as utility from "./utility.js";
+import { collectiveExpenses } from "./Data/expenses.js";
 import { category } from "./Data/category.js";
 import { expenseTags } from "./Data/tags.js";
 let editId = '';
 function renderExpenses() {
     const tagsPane = document.querySelector('.expenses-pane');
-    let filteredData = filterByMonth();
+    let filteredData = utility.filterByMonth();
+    let statusbox = document.querySelector('.statusbox');
     let html = '';
+    if (filteredData.length === 0) {
+        statusbox.innerText = 'No Expenses Yet'
+    }
+    else {
+        statusbox.innerText = ''
+    }
     filteredData.forEach(elem => {
         html += `<div class="expense-card">
             <div class="expense-header">
@@ -15,7 +22,7 @@ function renderExpenses() {
             </div>
 
             <div class="expense-body">
-                <span class="expense-date-time">${formatDate(elem.datetime)}</span>
+                <span class="expense-date-time">${utility.formatDate(elem.datetime)}</span>
                 <span class="expense-mode online">${elem.paymentMode === '0' ? 'Online' : 'Offline'} Payment</span>
             </div>
             <p class="expense-comment">
@@ -28,21 +35,38 @@ function renderExpenses() {
     tagsPane.innerHTML = html;
 };
 function reRenderExpenses() {
-    const input = document.querySelector('.filter-selector');
-    input.addEventListener('change', () => {
+    const month = document.querySelector('.filter-selector');
+    const year = document.querySelector('.filter-selector-year');
+    month.addEventListener('change', () => {
         renderExpenses();
-    })
-}
+    });
+    year.addEventListener('change', () => {
+        renderExpenses();
+    });
+};
+function renderYearFilter() {
+    const format = utility.oldestAndLatestExpense();
+    const yearFilter = document.querySelector('.filter-selector-year');
+    let html = '';
+    for (let i = format.oldest; i < format.latest + 1; i++) {
+        html += `<option value="${i}"${i === Number(dayjs().format('YYYY')) ? 'selected' : ''}>${i}</option>`
+    };
+    yearFilter.innerHTML = html;
+};
+
+
 reRender();
 function reRender() {
+    renderYearFilter();
     renderExpenses();
     reRenderExpenses();
     renderEditPane();
     addClassToForm();
-    renderCategory(category, 'category-list');
-    renderTagsPane(expenseTags, 'tags-list')
+    utility.renderCategory(category, 'category-list');
+    utility.renderTagsPane(expenseTags, 'tags-list')
     submitButton();
     deleteBtn();
+
 };
 //renderEditPaneCategory();
 function isLocked(timeCreated) {
@@ -90,7 +114,7 @@ function submitButton() {
         collectiveExpenses.forEach(exp => {
             if (exp.id === editId) {
                 Object.assign(exp, editData);
-                saveToStorage(collectiveExpenses, 'expenses');
+                utility.utility.utility.saveToStorage(collectiveExpenses, 'expenses');
             };
         });
         reRender();
@@ -106,9 +130,9 @@ debugging in some way or if i want to change something i wont break multiple stu
 function addOldData() {
     const oldData = getEditingExpense(editId);
     const inputs = document.querySelectorAll('.inputs');
-    tagsList.length = 0;
+    utility.tagsList.length = 0;
     oldData.tags.forEach(tag => {
-        tagsList.push(tag);
+        utility.tagsList.push(tag);
     });
     inputs.forEach(inp => {
         let dataset = inp.dataset.inputType;
@@ -128,8 +152,8 @@ function addOldData() {
             inp.value = oldData.comment;
         };
     });
-    renderTagsList('selected-tags');
-    renderTagsPane(expenseTags, 'tags-list');
+    utility.renderTagsList('selected-tags');
+    utility.renderTagsPane(expenseTags, 'tags-list');
 }
 function getValuesFromEditPane() {
     const updatedValue = {};
@@ -152,7 +176,7 @@ function getValuesFromEditPane() {
             updatedValue.comment = inp.value;
         };
     });
-    updatedValue.tags = tagsList;
+    updatedValue.tags = utility.tagsList;
     return updatedValue;
 };
 function getEditingExpense(id) {
@@ -178,7 +202,7 @@ function deleteExpense(id) {
     collectiveExpenses.forEach((exp, ind) => {
         if (exp.id === id) {
             collectiveExpenses.splice(ind, 1);
-            saveToStorage(collectiveExpenses, 'expenses')
+            utility.utility.utility.saveToStorage(collectiveExpenses, 'expenses')
             reRender();
         }
     })

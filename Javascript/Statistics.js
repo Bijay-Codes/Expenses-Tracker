@@ -1,5 +1,5 @@
 import { collectiveExpenses } from "./Data/expenses.js";
-import { filterByMonth } from "./utility.js";
+import { filterByMonth, oldestAndLatestExpense } from "./utility.js";
 let filterData = filterByMonth();
 const DOMS = {
     totalAmt: document.querySelector('.total-spent'),
@@ -17,12 +17,18 @@ function clearAllStats() {
     DOMS.allTags.innerHTML = '';
 }
 reRenderStats();
+renderYearFilter();
+
 function reRenderStats() {
     const input = document.querySelector('.filter-selector');
+    const yearInp = document.querySelector('.filter-selector-year');
     input.addEventListener('change', () => {
         renderStats();
     });
-}
+    yearInp.addEventListener('change', () => {
+        renderStats();
+    });
+};
 renderStats();
 function renderStats() {
     filterData = filterByMonth();
@@ -151,7 +157,7 @@ function renderStats() {
     ₹${data.payment.paymentOnline} By Online Payment (About ${onlinePercent}% of Transactions)</div>
     <div class="offline-spent">You Spent a Total of 
     ₹${data.payment.paymentOffline} By Offline Payment (About ${offlinePercent}% of Transactions)</div>
-    `
+    `;
     };
     function categorySection(domClass) {
         let html = '';
@@ -176,5 +182,14 @@ function renderStats() {
         };
         domClass.innerHTML = html;
     };
-
 }
+    function renderYearFilter() {
+        const format = oldestAndLatestExpense();
+        const yearFilter = document.querySelector('.filter-selector-year');
+        let html = '';
+        for (let i = format.oldest; i < format.latest + 1; i++) {
+            html += `<option value="${i}"${i === Number(dayjs().format('YYYY')) ? 'selected' : ''}>${i}</option>`
+        };
+        yearFilter.innerHTML = html;
+    };
+
