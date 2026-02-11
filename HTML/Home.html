@@ -7,18 +7,35 @@
     <title>Document</title>
     <link rel="stylesheet" href="../CSS/Home.css">
 </head>
+
 <body>
     <div class="navbar links">
         <div class="tabs"><a href="./Statistics.html">Statistics</a></div>
         <div class="tabs"><a href="./AddExpenses.html">Add Expenses</a></div>
         <div class="tabs selected">Home</div>
     </div>
+    <div class="filter">
+        <select name="filter-selector" class="filter-selector">
+            <option value="all" selected>All</option>
+            <option value="01">january</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">july</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+    </div>
     <div id="edit-pane" class="edit-pane hidden">
         <div class="edit-header">
             <input type="number" name="amount-input" class="inputs amount-input" data-input-type="amount">
             <div class="expense-category">
-                <label for="category">Category: </label>
-                <select name="category"data-input-type="category"class="inputs category-list"></select>
+                <select name="category" data-input-type="category" class="category-list inputs"></select>
             </div>
         </div>
         <div class="edit-body">
@@ -51,4 +68,5 @@
     <div class="expenses-pane"></div>
     <script type="module" src="../Javascript/Home.js"></script>
 </body>
+
 </html>

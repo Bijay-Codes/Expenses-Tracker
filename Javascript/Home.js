@@ -1,12 +1,13 @@
-import { saveToStorage, formatDate, renderCategory, renderTagsPane, tagsList, renderTagsList } from "./utility.js"
+import { saveToStorage, formatDate, filterByMonth, renderCategory, renderTagsPane, tagsList, renderTagsList } from "./utility.js"
 import { collectiveExpenses } from "./Data/expenses.js"
 import { category } from "./Data/category.js";
 import { expenseTags } from "./Data/tags.js";
 let editId = '';
 function renderExpenses() {
     const tagsPane = document.querySelector('.expenses-pane');
+    let filteredData = filterByMonth();
     let html = '';
-    collectiveExpenses.forEach(elem => {
+    filteredData.forEach(elem => {
         html += `<div class="expense-card">
             <div class="expense-header">
                 <span class="expense-category">${elem.category}</span>
@@ -26,9 +27,16 @@ function renderExpenses() {
     });
     tagsPane.innerHTML = html;
 };
+function reRenderExpenses() {
+    const input = document.querySelector('.filter-selector');
+    input.addEventListener('change', () => {
+        renderExpenses();
+    })
+}
 reRender();
 function reRender() {
     renderExpenses();
+    reRenderExpenses();
     renderEditPane();
     addClassToForm();
     renderCategory(category, 'category-list');
@@ -131,7 +139,7 @@ function getValuesFromEditPane() {
         if (dataset === 'amount') {
             updatedValue.amount = inp.value;
         }
-        else if(dataset==='category'){
+        else if (dataset === 'category') {
             updatedValue.category = inp.value;
         }
         else if (dataset === 'datetime') {
