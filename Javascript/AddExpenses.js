@@ -3,7 +3,6 @@ import { category } from "./Data/category.js";
 import { saveToStorage, renderCategory, tagsList, renderTagsPane, formatDate } from "./utility.js";
 import { collectiveExpenses } from "./Data/expenses.js";
 const expenseForm = document.getElementById('expense-form');
-const errorBox = document.querySelector('.error-box')
 // function renderCategory(list, classSelector) {
 //     const categoryTag = document.querySelector(`.${classSelector}`);
 //     let html = '';
@@ -65,7 +64,7 @@ function checkCustomDate() {
         }
         else {
             customDateTime.innerHTML = `<label for="datetime">Date & Time: </label>
-                    <input type="datetime-local" class="datetime" name="datetime" required>`
+                    <input type="datetime-local" class="datetime inputs" name="datetime" required>`
         }
     })
 };

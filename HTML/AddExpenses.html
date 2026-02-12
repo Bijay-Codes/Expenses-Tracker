@@ -4,54 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Expenses-Tracker/AddPage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../CSS/AddExpenses.css">
 </head>
 
 <body>
-    <div class="navbar links">
+    <div class="navbar-links">
+        <div class="tabs"><a href="./Home.html">Home</a></div>
         <div class="tabs"><a href="./Statistics.html">Statistics</a></div>
-        <div class="tabs">Add Expenses</div>
-        <div class="tabs selected"><a href="./Home.html">Home</a></div>
+        <div class="tabs selected-page">Add Expenses</div>
     </div>
-
-    <h1>Welcome to the Page. Here you can add your Expenses</h1>
+    <div class="greeting">Welcome to the page</div>
     <form id="expense-form">
         <div class="form-header">
             <div class="form-amount">
-                <label for="amount">Amount: </label>
-                <input type="number" name="amount" placeholder="Enter Amount 0.00" required>
+                <label for="amount">Amount • </label>
+                <input type="number" name="amount" placeholder="Enter Amount 0.00" required class="inputs">
             </div>
             <div class="form-category">
-                <label for="category">Category: </label>
-                <select name="category"dataset-input-type="category"class="category-list"></select>
+                <label for="category">Category • </label>
+                <select name="category" dataset-input-type="category" class="category-list select"></select>
             </div>
         </div>
         <div class="form-body">
             <div class="form-date-time">
-                <label for="current-date-time">Would you like to use the curent Date/Time for the Expense: </label>
+                <label for="current-date-time">Would you like to use the curent Date/Time for the Expense • </label>
                 <input type="checkbox" name="checkbox_datetime" class="checkbox-current-datetime">
                 <div class="date-time-input">
-                    <label for="datetime">Date & Time: </label>
-                    <input type="datetime-local" class="datetime" name="datetime" required>
+                    <label for="datetime">Date & Time • </label>
+                    <input type="datetime-local" class="datetime inputs" name="datetime" required>
                 </div>
             </div>
             <div class="form-payment-mode">
-                <label for="payment-mode">Payment Mode: </label>
-                <select name="paymentMode">
+                <label for="payment-mode">Payment Mode • </label>
+                <select name="paymentMode" class="select">
                     <option value="0" selected>Online Payment</option>
                     <option value="1">Offline Payment</option>
                 </select>
             </div>
 
-            <div class="tags-section">
-                <div class="selected-tags">Selected Tags (Max 4): </div>
+            <div class="tags-section select">
+                <div class="selected-tags">Selected Tags (Max 4) • </div>
                 <div class="tags-list"></div>
             </div>
         </div>
-
         <div class="form-footer">
-            <label for="comment">Comment: </label>
-            <textarea name="comment" placeholder="Add notes about this expense..."></textarea>
+            <label for="comment">Comment • </label>
+            <textarea name="comment" placeholder="Add notes about this expense..." class="inputs"></textarea>
         </div>
         <button type="submit" class="add-button">Add Expense</button>
     </form>
