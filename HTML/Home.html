@@ -4,18 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Expenses-Tracker/Homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../CSS/Home.css">
 </head>
 
 <body>
-    <div class="navbar links">
+    <div class="navbar-links">
         <div class="tabs"><a href="./Statistics.html">Statistics</a></div>
         <div class="tabs"><a href="./AddExpenses.html">Add Expenses</a></div>
-        <div class="tabs selected">Home</div>
+        <div class="tabs selected-page">Home</div>
     </div>
     <div class="filter">
-        <select name="filter-selector" class="filter-selector">
+        <select name="filter-selector" class="filter-selector filter">
             <option value="all" selected>All</option>
             <option value="01">january</option>
             <option value="02">February</option>
@@ -30,40 +34,42 @@
             <option value="11">November</option>
             <option value="12">December</option>
         </select>
-        <select name="filter-selector-year"class="filter-selector-year"></select>
+        <select name="filter-selector-year" class="filter-selector-year filter"></select>
     </div>
-    <span class="statusbox"></span>
-    <div id="edit-pane" class="edit-pane hidden">
-        <div class="edit-header">
-            <input type="number" name="amount-input" class="inputs amount-input" data-input-type="amount">
-            <div class="expense-category">
-                <select name="category" data-input-type="category" class="category-list inputs"></select>
+    <div class="statusbox"></div>
+    <div id="edit-pane" class="hidden">
+        <div class="editing-pane">
+            <div class="edit-header">
+                <input type="number" name="amount-input" class="inputs amount-input" data-input-type="amount">
+                <div class="expense-category">
+                    <select name="category" data-input-type="category" class="category-list inputs"></select>
+                </div>
             </div>
-        </div>
-        <div class="edit-body">
-            <div class="date-time">
-                <label for="datetime">Date & Time: </label>
-                <input type="datetime-local" class="inputs datetime" data-input-type="datetime" name="datetime">
+            <div class="edit-body">
+                <div class="date-time">
+                    <label for="datetime">Date & Time: </label>
+                    <input type="datetime-local" class="inputs datetime" data-input-type="datetime" name="datetime">
+                </div>
+                <div class="payment-mode">
+                    <label for="payment-mode">Payment Mode: </label>
+                    <select name="payment-mode" class="inputs payment-mode" data-input-type="payment-mode">
+                        <option value="0" selected>Online Payment</option>
+                        <option value="1">Offline Payment</option>
+                    </select>
+                </div>
+                <div class="tags-section">
+                    <div class="selected-tags">Selected Tags (Max 4): </div>
+                    <div class="tags-list"></div>
+                </div>
             </div>
-            <div class="payment-mode">
-                <label for="payment-mode">Payment Mode: </label>
-                <select name="payment-mode" class="inputs payment-mode" data-input-type="payment-mode">
-                    <option value="0" selected>Online Payment</option>
-                    <option value="1">Offline Payment</option>
-                </select>
-            </div>
-            <div class="tags-section">
-                <div class="selected-tags">Selected Tags (Max 4): </div>
-                <div class="tags-list"></div>
-            </div>
-        </div>
-        <div class="edit-footer">
-            <label for="comment">Comment: </label>
-            <textarea name="comment" class="inputs comment" data-input-type="comment"
-                placeholder="Add notes about this expense..."></textarea>
-            <div class="footer-buttons">
-                <button type="submit" class="visibility-buttons submit-button">Submit</button>
-                <button type="button" class="visibility-buttons cancel-button">Cancel</button>
+            <div class="edit-footer">
+                <label for="comment">Comment: </label>
+                <textarea name="comment" class="inputs comment" data-input-type="comment"
+                    placeholder="Add notes about this expense..."></textarea>
+                <div class="footer-buttons">
+                    <button type="submit" class="visibility-buttons submit-button">Submit</button>
+                    <button type="button" class="visibility-buttons cancel-button">Cancel</button>
+                </div>
             </div>
         </div>
     </div>

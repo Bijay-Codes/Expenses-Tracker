@@ -17,18 +17,17 @@ function renderExpenses() {
     filteredData.forEach(elem => {
         html += `<div class="expense-card">
             <div class="expense-header">
-                <span class="expense-category">${elem.category}</span>
-                <span class="expense-amount">₹${elem.amount}</span>
-            </div>
-
-            <div class="expense-body">
-                <span class="expense-date-time">${utility.formatDate(elem.datetime)}</span>
-                <span class="expense-mode online">${elem.paymentMode === '0' ? 'Online' : 'Offline'} Payment</span>
-            </div>
-            <p class="expense-comment">
+                <span class="expense-category main">${elem.category}⇒</span>
+                <span class="expense-amount main">₹${elem.amount}</span>
+                <p class="expense-comment main">Comment •
                 ${elem.comment}
             </p>
-            <span class="expense-tags">${elem.tags}</span>
+            <span class="expense-tags main">${elem.tags.join(' – ')}</span>
+            </div>
+            <div class="expense-body">
+                <span class="expense-date-time secondary">${utility.formatDate(elem.datetime)}</span>
+                <span class="expense-mode online secondary">${elem.paymentMode === '0' ? 'Online' : 'Offline'} Payment</span>
+            </div>
             <div class="card-buttons">${renderButtons(elem.createdAt, elem.id)}</div>
         </div>`
     });
@@ -75,12 +74,12 @@ function isLocked(timeCreated) {
 };
 function renderButtons(timeCreated, id) {
     if (isLocked(timeCreated)) {
-        return `<button type="button" class="locked">Edit 🔒</button>
-            <button type="button" class="locked">Delete 🔒</button>`
+        return `<button type="button" class="locked edit-delete-buttons">Edit 🔒</button>
+            <button type="button" class="locked edit-delete-buttons">Delete 🔒</button>`
     }
     else {
-        return `<button class="edit-button"data-expense-id="${id}">Edit</button>
-            <button class="delete-button"data-expense-id="${id}">Delete</button>`
+        return `<button class="edit-button edit-delete-buttons"data-expense-id="${id}">Edit ✏️ </button>
+            <button class="delete-button edit-delete-buttons"data-expense-id="${id}">Delete 🗑️</button>`
     };
 };
 function addClassToForm() {
