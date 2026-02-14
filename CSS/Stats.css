@@ -1,0 +1,78 @@
+/* Filters */
+.filter {
+    background-color: var(--sec-bg-color);
+    color: var(--sec-text);
+}
+
+.filter-selector-year {
+    border-radius: 1rem;
+}
+
+.filter-selector {
+    border-radius: 1rem;
+}
+
+.statusbox {
+    font-size: 2rem;
+    background-color: var(--sec-bg-color);
+    border-radius: 1rem;
+}
+
+
+.stats-charts {
+    max-width:34%;
+    height: auto;
+    margin: auto;
+    background-color: var(--sec-bg-color);
+    padding: 1rem;
+    border: 2px solid var(--prim-border-color);
+    border-radius: 1rem;
+}
+
+.stats-pane {
+    height: auto;
+    width: 60%;
+    background-color: var(--sec-bg-color);
+    text-align: center;
+    margin: auto;
+    border: 2px solid var(--prim-border-color);
+    border-radius: 1.5rem;
+}
+
+.stats-pane:hover {
+    background-color: var(--main-bg-color);
+    transform: rotateZ(1deg) scale(1.056);
+    transition: background-color 1.2s, transform 0.40s;
+}
+
+.main-stats {
+    font-family: 'Outfit', sans-serif;
+    color: var(--prim-text);
+    font-weight: 600;
+}
+
+.values {
+    color: var(--amount-color);
+    font-size: 1rem;
+}
+
+.amount {
+    font-size: 1.2rem;
+}
+
+.main-text {
+    color: var(--prim-text);
+}
+
+.times-used {
+    color: var(--prim-text);
+    font-size: 1rem;
+}
+
+.keys {
+    color: var(--prim-text);
+}
+
+.collapse {
+    display: none;
+}

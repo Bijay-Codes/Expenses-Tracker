@@ -1,6 +1,6 @@
 import { expenseTags } from "./Data/tags.js";
 import { category } from "./Data/category.js";
-import { saveToStorage, renderCategory, tagsList, renderTagsPane, formatDate } from "./utility.js";
+import { saveToStorage, renderCategory, tagsList, renderTagsPane } from "./utility.js";
 import { collectiveExpenses } from "./Data/expenses.js";
 const expenseForm = document.getElementById('expense-form');
 // function renderCategory(list, classSelector) {
@@ -76,7 +76,7 @@ expenseForm.addEventListener('submit', (submit) => {
     const data = new FormData(expenseForm);
     const expenseData = Object.fromEntries(data);
     expenseData.id = crypto.randomUUID();
-    expenseData.createdAt = Date.now();
+    expenseData.createdAt = Date.now()-25*60*60*1000;
     expenseData.tags = tagsList;
     if (expenseData.checkbox_datetime === 'on') {
         expenseData.datetime = dayjs(expenseData.createdAt).format('YYYY-MM-DDTHH:mm');
@@ -84,4 +84,6 @@ expenseForm.addEventListener('submit', (submit) => {
     collectiveExpenses.unshift(expenseData);
     saveToStorage(collectiveExpenses, 'expenses');
     submit.target.reset();
+    tagsList.length = 0;
+    renderTagsPane(expenseTags, 'tags-list');
 });

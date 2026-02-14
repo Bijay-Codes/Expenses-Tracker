@@ -5,17 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/Utility.css">
+    <link rel="stylesheet" href="../CSS/Stats.css">
+
 </head>
 
 <body>
-    <div class="navbar links">
-        <div class="tabs">Statistics</div>
+    <div class="navbar-links">
+        <div class="tabs"><a href="./Home.html">Home</a></div>
         <div class="tabs"><a href="./AddExpenses.html">Add Expenses</a></div>
-        <div class="tabs selected"><a href="./Home.html">Home</a></div>
+        <div class="tabs selected-page">Statistics</div>
     </div>
-    <h1>Hello Welcome to Statistics Page! This is Statistics Time</h1>
+    <h1>Hello!! Welcome to Statistics Page! This is Statistics Time</h1>
     <div class="filter">
-        <select name="filter-selector" class="filter-selector">
+        <select name="filter-selector" class="filter filter-selector">
             <option value="all" selected>All</option>
             <option value="01">january</option>
             <option value="02">February</option>
@@ -30,22 +37,28 @@
             <option value="11">November</option>
             <option value="12">December</option>
         </select>
-        <select name="filter-selector-year"class="filter-selector-year">
-
+        <select name="filter-selector-year" class="filter filter-selector-year">
         </select>
     </div>
     <span class="statusbox"></span>
-    <div class="stats">
-        <div class="main">
-            <span class="total-spent"></span>
-            <div class="payment-section"></div>
-        </div>
-        <div class="body">
-            <div class="category-section"></div>
-            <div class="tags-section"></div>
-            <div class="all-tags-used"></div>
-        </div>
+    <div class="stats-charts">
     </div>
+    <div class="stats-pane">
+        <div class="main-stats">
+            <div class="total-spent"></div>
+            <div class="payment-category">
+                <div class="most-spent-category"></div>
+                <div class="most-used-category"></div>
+            </div>
+            <div class="top-4-tags"></div>
+            <div class="payment-mode"></div>
+        </div>
+        <div class="additional-stats">
+            <div class="payment-per-category"></div>
+        </div>
+        <div class="all-tags"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="../Javascript/Statistics.js"></script>
 </body>
 

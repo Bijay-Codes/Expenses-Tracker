@@ -1,0 +1,76 @@
+:root {
+    /* Dark theme base (keep these) */
+    --prim-bg-color: #0f0f1e;
+    --sec-bg-color: #1a1a2e;
+    --main-bg-color: #2a2a3e;
+    --prim-border-color: #3a3a4e;
+
+    /* Text colors */
+    --prim-text: #f9fafb;
+    --sec-text: #9ca3af;
+    --comment-text: #c4c4c4;
+
+    /* Judgment colors (for tags/cards) */
+    --good-decision: #10b981;
+    --bad-decision: #ef4444;
+    --neutral-decision: #f59e0b;
+
+    /* Amount highlight */
+    --amount-color: #fbbf24;
+
+    /* Old accent colors (can still use these for buttons) */
+    --acc1: #5865f2;
+    --acc2: #4752c4;
+    --prim-green: #57f287;
+    --sec-orange: #faa61a;
+    --sec-red: #ed4245;
+    --prim-grey: #6b7280;
+}
+
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background-color: var(--prim-bg-color);
+    color: var(--sec-text);
+    text-transform: capitalize;
+}
+
+/* Navbar */
+a {
+    text-decoration: none;
+    color: inherit;
+    font-family: inherit;
+}
+
+.navbar-links {
+    display: flex;
+    color: var(--prim-text);
+    gap: 1rem;
+}
+
+.tabs {
+    font: inherit;
+    background-color: transparent;
+    border: 2px solid var(--prim-border-color);
+    color: var(--acc1);
+    padding: 1.5%;
+    border-radius: 999px;
+
+}
+
+.tabs:hover {
+    color: blueviolet;
+    transform: translateY(4%) scale(1.05);
+    transition: color 1s, transform 0.50s;
+}
+
+.selected-page {
+    color: blueviolet;
+}
+
+.selected-page:hover {
+    background-color: var(--sec-bg-color);
+    color: var(--acc1);
+    transition: background-color 1.5s, color 1s;
+}

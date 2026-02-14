@@ -1,88 +1,17 @@
-:root {
-    /* Dark theme base (keep these) */
-    --prim-bg-color: #0f0f1e;
-    --sec-bg-color: #1a1a2e;
-    --main-bg-color: #2a2a3e;
-    --prim-border-color: #3a3a4e;
-
-    /* Text colors */
-    --prim-text: #f9fafb;
-    --sec-text: #9ca3af;
-    --comment-text: #c4c4c4;
-
-    /* Judgment colors (for tags/cards) */
-    --good-decision: #10b981;
-    --bad-decision: #ef4444;
-    --neutral-decision: #f59e0b;
-
-    /* Amount highlight */
-    --amount-color: #fbbf24;
-
-    /* Old accent colors (can still use these for buttons) */
-    --acc1: #5865f2;
-    --acc2: #4752c4;
-    --prim-green: #57f287;
-    --sec-orange: #faa61a;
-    --sec-red: #ed4245;
-    --prim-grey: #6b7280;
-}
-
-
-body {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    background-color: var(--prim-bg-color);
-    color: var(--sec-text);
-}
-/* Navbar */
-a {
-    text-decoration: none;
-    color: inherit;
-    font-family: inherit;
-}
-
-.navbar-links {
-    display: flex;
-    color: var(--prim-text);
-    gap: 1rem;
-}
-
-.tabs {
-    font: inherit;
-    background-color: transparent;
-    border: 2px solid var(--prim-border-color);
-    color: var(--acc1);
-    padding: 1%;
-    border-radius: 999px;
-
-}
-
-.tabs:hover {
-    color: blueviolet;
-    transition: color 1s;
-}
-
-.selected-page {
-    color: blueviolet;
-}
-
-.selected-page:hover {
-    background-color: var(--sec-bg-color);
-    color: var(--acc1);
-    transition: background-color 1.5s, color 1s;
-}
-
 /* Filters */
 .filter {
     background-color: var(--sec-bg-color);
     color: var(--sec-text);
 }
-.filter-selector-year{
+
+.filter-selector-year {
     border-radius: 1rem;
 }
-.filter-selector{
+
+.filter-selector {
     border-radius: 1rem;
 }
+
 .statusbox {
     background-color: var(--sec-bg-color);
 }
@@ -113,14 +42,23 @@ a {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
     color: var(--prim-text);
+
 }
 
+
 .secondary {
-    font-size: small;
+    font-size: 0.9rem;
 }
 
 .expense-amount {
     color: var(--amount-color);
+    font-size: 1.2rem;
+    font-weight: 750;
+}
+
+.expense-amount:hover {
+    font-size: 1.3rem;
+    font-weight: 800;
 }
 
 .card-buttons {
@@ -145,12 +83,20 @@ a {
 .locked {
     background-color: var(--prim-grey);
     color: var(--prim-text);
+    font-style: oblique;
 }
 
 .edit-delete-buttons {
     border: 2px solid var(--prim-border-color);
     border-radius: 999px;
     padding: 10px;
+    font-style: italic;
+}
+
+.edit-delete-buttons:hover {
+    padding-left: 1.2rem;
+    font-weight: 600;
+    box-shadow: 1px 1px 1.3rem var(--prim-bg-color);
 }
 
 /* Edit pane starts here */
@@ -182,7 +128,6 @@ a {
     width: 90%;
 }
 
-
 .inputs {
     background-color: var(--prim-bg-color);
     color: var(--prim-text);
@@ -195,10 +140,15 @@ a {
 .tags-button {
     background-color: var(--prim-grey);
     color: var(--prim-text);
-    border: 1px solid black;
+    border: 1px solid var(--main-bg-color);
     text-align: center;
-    padding: 1%;
+    padding: 0.16rem;
     border-radius: 999px;
+}
+
+.tags-button:hover {
+    background-color: var(--prim-green);
+    transform: scale(1.04);
 }
 
 .selected {
@@ -208,7 +158,14 @@ a {
 .visibility-buttons {
     border: 1px solid var(--prim-border-color);
     color: var(--prim-text);
-    border-radius: 10% 10%;
+    border-radius: 1.3rem;
+}
+
+.visibility-buttons:hover {
+    transform: scale(1.05);
+    border: 1px solid var(--prim-grey);
+    border-radius: 999px;
+    transition: all 1s;
 }
 
 .submit-button {
@@ -219,4 +176,9 @@ a {
 .cancel-button {
     background-color: var(--sec-red);
     padding: 1%;
+}
+
+label:hover {
+    color: var(--acc1);
+    font-weight: 700;
 }

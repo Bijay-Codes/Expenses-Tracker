@@ -1,21 +1,47 @@
 import { collectiveExpenses } from "./Data/expenses.js";
 import { filterByMonth, oldestAndLatestExpense } from "./utility.js";
 let filterData = filterByMonth();
+const statCharts = document.getElementById('category-charts');
 const DOMS = {
     totalAmt: document.querySelector('.total-spent'),
-    paymentSection: document.querySelector('.payment-section'),
-    categorySection: document.querySelector('.category-section'),
-    tagsSection: document.querySelector('.tags-section'),
-    allTags: document.querySelector('.all-tags-used'),
+    tagsSection: document.querySelector('.payment-category'),
+    paymentMode: document.querySelector('.payment-mode'),
+    categorySection: document.querySelector('.payment-per-category'),
+    top4Tags: document.querySelector('.top-4-tags'),
+    allTags: document.querySelector('.all-tags'),
     statusbox: document.querySelector('.statusbox')
 };
+const chartContainer = document.querySelector('.stats-charts');
+const statsPane = document.querySelector('.stats-pane');
+
 function clearAllStats() {
-    DOMS.totalAmt.innerHTML = '';
-    DOMS.paymentSection.innerHTML = '';
-    DOMS.categorySection.innerHTML = '';
-    DOMS.tagsSection.innerHTML = '';
-    DOMS.allTags.innerHTML = '';
+    chartContainer.classList.add('collapse');
+    statsPane.classList.add('collapse');
 }
+const categoryColors = {
+    'Groceries 🛒': '#10b981',
+    'Restaurants & Takeout 🍕': '#ef4444',
+    'Coffee & Snacks ☕': '#f59e0b',
+    'Transportation 🚙': '#6b7280',
+    'Gas & Fuel ⛽': '#fbbf24',
+    'Housing 🏠': '#5865f2',
+    'Utilities ⚡': '#fde047',
+    'Phone & Internet 📡': '#a78bfa',
+    'Subscriptions 📺': '#ec4899',
+    'Healthcare 💊': '#06b6d4',
+    'Fitness & Wellness 💪': '#14b8a6',
+    'Insurance 🛡️': '#64748b',
+    'Personal Care 💇‍♀️': '#f472b6',
+    'Clothing & Shoes 👟': '#c084fc',
+    'Tech & Electronics 💻': '#8b5cf6',
+    'Entertainment 🎮': '#f43f5e',
+    'Hobbies 🎨': '#fb923c',
+    'Travel ✈️': '#38bdf8',
+    'Gifts 🎁': '#fb7185',
+    'Pets 🐕': '#fcd34d',
+    'Education & Learning 📚': '#34d399',
+    'Financial 💳': '#dc2626'
+};
 reRenderStats();
 renderYearFilter();
 
@@ -23,16 +49,22 @@ function reRenderStats() {
     const input = document.querySelector('.filter-selector');
     const yearInp = document.querySelector('.filter-selector-year');
     input.addEventListener('change', () => {
+        clearAllStats();
         renderStats();
     });
     yearInp.addEventListener('change', () => {
+        clearAllStats();
         renderStats();
     });
 };
 renderStats();
 function renderStats() {
     filterData = filterByMonth();
-
+    chartContainer.innerHTML = `<canvas id="category-charts"></canvas>`;
+    if (chartContainer.classList.contains('collapse')) {
+        chartContainer.classList.remove('collapse');
+        statsPane.classList.remove('collapse');
+    }
     const data = {
         totalAmt: 0,
         payment: {
@@ -56,7 +88,7 @@ function renderStats() {
     let offlinePercent;
     let categoryPercent;
     if (filterData.length === 0) {
-        DOMS.statusbox.innerText = 'No Transactions found for this particual month.';
+        DOMS.statusbox.innerText = 'No Transactions found for this particual month. 😔';
         clearAllStats();
         return;
     }
@@ -66,11 +98,13 @@ function renderStats() {
     getValues();
     getPercent();
     getMostPreferred();
-    totalAmt(DOMS.totalAmt);
-    paymentSection(DOMS.paymentSection);
-    categorySection(DOMS.categorySection);
-    top4Tags(DOMS.tagsSection);
-    tagsSection(DOMS.allTags);
+    totalAmount();
+    paymentCategory();
+    paymentMode();
+    paymentPerCategory();
+    top4tags();
+    top4Category();
+    drawCategoryChart();
     function getValues() {
         let total = 0;
         filterData.forEach(exp => {
@@ -147,43 +181,118 @@ function renderStats() {
         };
         preff.top4 = Object.entries(data.usedTags).sort((a, b) => b[1] - a[1]).slice(0, 4);
     };
-    function totalAmt(domClass) {
-        domClass.innerText = `The Total of All Your Expenses is ₹${data.totalAmt}`;
-    };
-    function paymentSection(domClass) {
-        domClass.innerHTML = `<div class="preffered-mode">Your Most Preffered Payment Mode is ${preff.preffPaymentMode}
-    Payment (${preff.preffPaymentMode === "Online" ? data.payment.online : data.payment.offline} Times total)</div>
-    <div class="online-spent">You Spent a Total of 
-    ₹${data.payment.paymentOnline} By Online Payment (About ${onlinePercent}% of Transactions)</div>
-    <div class="offline-spent">You Spent a Total of 
-    ₹${data.payment.paymentOffline} By Offline Payment (About ${offlinePercent}% of Transactions)</div>
-    `;
-    };
-    function categorySection(domClass) {
-        let html = '';
-        for (const [category, value] of Object.entries(data.category.moneySpent)) {
-            html += `<div class="category-pane">${category} ₹${value} 
-        (${data.category.timesUsed[category]} Times 
-        and ${categoryPercent[category]}%)</div>`;
-        }
-        domClass.innerHTML = html;
-    };
-    function top4Tags(domClass) {
-        let html = 'Your 4 Most Used Tags';
-        preff.top4.forEach(pair => {
-            html += `<div class="top-4-tags">${pair[0]}: (${pair[1]} Times Used)</div>`;
-        })
-        domClass.innerHTML = html;
+
+    function totalAmount() {
+        DOMS.totalAmt.innerHTML = `<span class="main-text">Total Amount ⇒ </span><span class="amount values">₹${data.totalAmt}</span>`;
     }
-    function tagsSection(domClass) {
-        let html = '<div>All Tags Used by You</div>';
-        for (const [key, val] of Object.entries(data.usedTags)) {
-            html += `<span class="tags-used">${key} : ${val}</span>`;
+    function paymentCategory() {
+        const mostSpent = document.querySelector('.most-spent-category');
+        const mostUsed = document.querySelector('.most-used-category');
+        let highestSpentCategory = 0;
+        let spentKey;
+        for (const [key, val] of Object.entries(data.category.moneySpent)) {
+            if (highestSpentCategory < val) {
+                spentKey = key;
+                highestSpentCategory = val;
+            };
         };
-        domClass.innerHTML = html;
+        mostSpent.innerHTML = `<span class="category-key keys">${spentKey}</span> — <span class="category-value values">₹ ${highestSpentCategory}</span>`;
+        mostUsed.innerHTML = `<span class="category-key keys">${preff.preffCategory.key}</span> — <span class="category-value times-used">${preff.preffCategory.value}x</span>`;
     };
+    function paymentMode() {
+        const payment = document.querySelector('.payment-mode');
+        payment.innerHTML = `<span class="preffered-mode">Preffered Payment Mode ⇒ ${preff.preffPaymentMode} Payment
+         </div> (Online • <span class="times-used">${data.payment.online}</span> Offline • <span class="times-used">${data.payment.offline}</span>)`;
+    }
+    function paymentPerCategory() {
+        const perCategory = document.querySelector('.payment-per-category');
+        let html = '';
+        for (let [key, val] of Object.entries(data.category.timesUsed)) {
+            html += `<div class="category-sec">${key} • <span class="times-used">${val}x</span></div>`;
+        }
+        perCategory.innerHTML = html;
+    }
+    function top4tags() {
+        const tags = document.querySelector('.top-4-tags');
+        let html = '<div class="tags-heading">Top 4 Tags </div>'
+        preff.top4.forEach(tag => {
+            html += `<div class="tag">${tag[0]} (<span class="times-used">${tag[1]}x</span>)</div>`;
+        })
+        tags.innerHTML = html;
+    }
+    function top4Category() {
+        const sorted = Object.entries(data.category.moneySpent).sort((a, b) => b[1] - a[1]);
+        let top4 = sorted.slice(0, 4);
+        const deleted = sorted.slice(4);
+        let othersTotal = 0;
+        if (sorted.length > 4) {
+            deleted.forEach(elem => {
+                othersTotal += elem[1];
+            });
+        }
+        data.category.others = othersTotal;
+        data.category.top4Data = top4;
+    }
+    function drawCategoryChart() {
+        const ctx = document.getElementById('category-charts');
+        const chartData = getDataForChart();
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Money Spent',
+                    data: chartData.chartData,
+                    backgroundColor: chartData.color,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        align: 'center',
+                        labels: {
+                            color: '#f9fafb',
+                            font: {
+                                family: 'DM Sans',
+                                size: 13
+                            },
+                            generateLabels: (chart) => {
+                                const data = chart.data;
+                                return data.labels.map((label, i) => ({
+                                    text: `${label} • ₹${data.datasets[0].data[i]}`,
+                                    fillStyle: data.datasets[0].backgroundColor[i],
+                                    fontColor: '#f9fafb',
+                                    hidden: false,
+                                    index: i
+                                }));
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    function getDataForChart() {
+        const chartData = [];
+        const labels = [];
+        const color = [];
+        data.category.top4Data.forEach(categoryData => {
+            chartData.push(categoryData[1]);
+            labels.push(categoryData[0]);
+            color.push(categoryColors[categoryData[0]]);
+        })
+        if (data.category.others > 0) {
+            chartData.push(data.category.others);
+            labels.push('Others');
+            color.push('#475569')
+        }
+        return { chartData, labels, color }
+    }
 }
-    function renderYearFilter() {
+function renderYearFilter() {
+    if (collectiveExpenses.length !== 0) {
         const format = oldestAndLatestExpense();
         const yearFilter = document.querySelector('.filter-selector-year');
         let html = '';
@@ -191,5 +300,5 @@ function renderStats() {
             html += `<option value="${i}"${i === Number(dayjs().format('YYYY')) ? 'selected' : ''}>${i}</option>`
         };
         yearFilter.innerHTML = html;
-    };
-
+    }
+}

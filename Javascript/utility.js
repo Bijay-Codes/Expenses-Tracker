@@ -51,7 +51,7 @@ export function addToList(tag) {
 
 export function renderTagsList(classSelector) {
     const tagsHtml = document.querySelector(`.${classSelector}`);
-    let html = 'Selected Tags (Max 4):';
+    let html = 'Selected Tags (Max 4) ✏️';
     tagsList.forEach(tag => {
         html += `<span class="tags">${tag}</span>`;
     });
@@ -81,18 +81,20 @@ export function filterByMonth() {
 };
 
 export function oldestAndLatestExpense() {
-    const date = {
-        oldest: Number(dayjs(collectiveExpenses[0].datetime).format('YYYY')),
-        latest: Number(dayjs().format('YYYY'))
+    if (collectiveExpenses.length !== 0) {
+        const date = {
+            oldest: Number(dayjs(collectiveExpenses[0].datetime).format('YYYY')),
+            latest: Number(dayjs().format('YYYY'))
+        }
+        collectiveExpenses.forEach(data => {
+            let year = Number(dayjs(data.datetime).format('YYYY'));
+            if (year < date.oldest) {
+                date.oldest = year;
+            }
+            else if (date.latest < year) {
+                date.latest = year;
+            }
+        });
+        return date;
     }
-    collectiveExpenses.forEach(data => {
-        let year = Number(dayjs(data.datetime).format('YYYY'));
-        if (year < date.oldest) {
-            date.oldest = year;
-        }
-        else if (date.latest < year) {
-            date.latest = year;
-        }
-    });
-    return date
 };

@@ -201,7 +201,7 @@ function deleteExpense(id) {
     collectiveExpenses.forEach((exp, ind) => {
         if (exp.id === id) {
             collectiveExpenses.splice(ind, 1);
-            utility.utility.utility.saveToStorage(collectiveExpenses, 'expenses')
+            utility.saveToStorage(collectiveExpenses, 'expenses')
             reRender();
         }
     })
