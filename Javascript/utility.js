@@ -2,6 +2,12 @@ import "https://cdn.jsdelivr.net/npm/dayjs@1.11.19/dayjs.min.js";
 import { expenseTags } from "./Data/tags.js";
 import { collectiveExpenses } from "./Data/expenses.js";
 export let tagsList = [];
+export const months = {
+    'All': 'all', 'January': '01', 'February': '02', 'March': '03',
+    'April': '04', 'May': '05', 'June': '06', 'July': '07',
+    'August': '08', 'September': '09', 'October': '10', 'November': '11',
+    'December': '12'
+}
 export function saveToStorage(data, key) {
     localStorage.setItem(key, JSON.stringify(data));
 };
@@ -48,7 +54,7 @@ export function addToList(tag) {
     };
     renderTagsPane(expenseTags, 'tags-list');
 };
-
+// shows and renders on the ui what tags are selected by user.
 export function renderTagsList(classSelector) {
     const tagsHtml = document.querySelector(`.${classSelector}`);
     let html = 'Selected Tags (Max 4) ✏️';
@@ -57,7 +63,7 @@ export function renderTagsList(classSelector) {
     });
     tagsHtml.innerHTML = html;
 };
-
+// deletes the tag from tagslist if its already in the tagslist.
 export function deleteFromList(tag) {
     tagsList.splice(tagsList.indexOf(tag), 1);
 };
@@ -77,7 +83,6 @@ export function filterByMonth() {
             return month === monthInp.value && year === yearInp.value;
         })
     }
-
 };
 
 export function oldestAndLatestExpense() {
@@ -98,3 +103,11 @@ export function oldestAndLatestExpense() {
         return date;
     }
 };
+export function renderMonths(domClass) {
+    let selector = document.querySelector(`.${domClass}`);
+    let html = '';
+    for (const [key, val] of Object.entries(months)) {
+        html += `<option value="${val}"${dayjs().format('MMMM') === key ? 'selected' : ''}>${key}</option>`;
+    }
+    selector.innerHTML = html;
+}

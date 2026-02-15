@@ -41,8 +41,8 @@
 
 .stats-pane:hover {
     background-color: var(--main-bg-color);
-    transform: rotateZ(1deg) scale(1.056);
-    transition: background-color 1.2s, transform 0.40s;
+    transform: scale(1.02);
+    transition: all 0.5 ease;
 }
 
 .main-stats {

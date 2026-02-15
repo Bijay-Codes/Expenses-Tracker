@@ -2,7 +2,9 @@ import * as utility from "./utility.js";
 import { collectiveExpenses } from "./Data/expenses.js";
 import { category } from "./Data/category.js";
 import { expenseTags } from "./Data/tags.js";
+import { scores } from "./Data/RoastData.js";
 let editId = '';
+// renderss the expenses pane and all cards.
 function renderExpenses() {
     const tagsPane = document.querySelector('.expenses-pane');
     let filteredData = utility.filterByMonth();
@@ -19,12 +21,10 @@ function renderExpenses() {
             <div class="expense-header">
                 <span class="expense-category main">${elem.category}⇒</span>
                 <span class="expense-amount main">₹${elem.amount}</span>
-                <p class="expense-comment main">Comment •
-                ${elem.comment}
-            </p>
-            <span class="expense-tags main">${elem.tags.join(' – ')}</span>
-            </div>
-            <div class="expense-body">
+                </div>
+                <div class="expense-body">
+                <span class="expense-tags main">${elem.tags.join(' — ')}</span>
+                <p class="expense-comment main">Comment •${elem.comment}</p>
                 <span class="expense-date-time secondary">${utility.formatDate(elem.datetime)}</span>
                 <span class="expense-mode online secondary">${elem.paymentMode === '0' ? 'Online' : 'Offline'} Payment</span>
             </div>
@@ -33,6 +33,8 @@ function renderExpenses() {
     });
     tagsPane.innerHTML = html;
 };
+
+// renders expenses when the filter is active.
 function reRenderExpenses() {
     const month = document.querySelector('.filter-selector');
     const year = document.querySelector('.filter-selector-year');
@@ -43,6 +45,8 @@ function reRenderExpenses() {
         renderExpenses();
     });
 };
+// renders both year and month dropdowns
+utility.renderMonths('filter-selector');
 function renderYearFilter() {
     const format = utility.oldestAndLatestExpense();
     const yearFilter = document.querySelector('.filter-selector-year');
@@ -53,25 +57,25 @@ function renderYearFilter() {
     yearFilter.innerHTML = html;
 };
 
-
-reRender();
-function reRender() {
+//renders everything...
+renderPage();
+function renderPage() {
     renderYearFilter();
     renderExpenses();
     reRenderExpenses();
-    renderEditPane();
+    editButtons();
     addClassToForm();
     utility.renderCategory(category, 'category-list');
     utility.renderTagsPane(expenseTags, 'tags-list')
-    submitButton();
+    submitButtonClick();
     deleteBtn();
-
 };
-//renderEditPaneCategory();
+// determines if the expense will be locked or not.
 function isLocked(timeCreated) {
     const lockTime = 24 * 60 * 60 * 1000
     return Date.now() - timeCreated > lockTime;
 };
+// generating 2 variants of buttons based on the isLocked result.
 function renderButtons(timeCreated, id) {
     if (isLocked(timeCreated)) {
         return `<button type="button" class="locked edit-delete-buttons">Edit 🔒</button>
@@ -82,6 +86,7 @@ function renderButtons(timeCreated, id) {
             <button class="delete-button edit-delete-buttons"data-expense-id="${id}">Delete 🗑️</button>`
     };
 };
+// collapses the edit pane when the edit button or cancel button is clicked by adding the class hidden.
 function addClassToForm() {
     const editPane = document.getElementById('edit-pane');
     const buttons = document.querySelectorAll('.visibility-buttons');
@@ -92,33 +97,80 @@ function addClassToForm() {
         });
     });
 };
-
+// makes the edit pane visible by adding the class editing.
 function renderEditPane() {
-    const editButton = document.querySelectorAll('.edit-button');
     const editPane = document.getElementById('edit-pane');
+    addOldData();
+    editPane.classList.remove('hidden');
+    editPane.classList.add('editing');
+};
+// adds event listener to the edit buttons.
+function editButtons() {
+    const editButton = document.querySelectorAll('.edit-button');
     editButton.forEach(btn => {
         btn.addEventListener('click', () => {
             editId = btn.dataset.expenseId;
-            addOldData();
-            editPane.classList.remove('hidden');
-            editPane.classList.add('editing');
+            renderEditPane();
+        });
+    });
+};
+// adds the event listeners to the delete buttons.
+function deleteBtn() {
+    const deleteButton = document.querySelectorAll('.delete-button');
+    deleteButton.forEach(btn => {
+        btn.addEventListener('click', () => {
+            deleteExpense(btn.dataset.expenseId);
         });
     });
 };
 
-function submitButton() {
-    const btn = document.querySelector('.submit-button');
-    btn.addEventListener('click', () => {
-        const editData = getValuesFromEditPane();
-        collectiveExpenses.forEach(exp => {
-            if (exp.id === editId) {
-                Object.assign(exp, editData);
-                utility.utility.utility.saveToStorage(collectiveExpenses, 'expenses');
-            };
-        });
-        reRender();
+// actually  deletes the expenses.
+function deleteExpense(id) {
+    collectiveExpenses.forEach((exp, ind) => {
+        if (exp.id === id) {
+            collectiveExpenses.splice(ind, 1);
+            utility.saveToStorage(collectiveExpenses, 'expenses')
+            renderExpenses();
+        };
     });
 };
+// adds event listener to the submit button.
+function submitButtonClick() {
+    const btn = document.querySelector('.submit-button');
+    btn.addEventListener('click', () => {
+        submitButton();
+    });
+};
+// submits the form and closes the edit pane.
+function submitButton() {
+    const editData = getValuesFromEditPane();
+    collectiveExpenses.forEach(exp => {
+        if (exp.id === editId) {
+            if (isEdited(exp, editData)) {
+                scores.editCount++;
+                utility.saveToStorage(scores, 'scores');
+            }
+            Object.assign(exp, editData);
+            utility.saveToStorage(collectiveExpenses, 'expenses');
+        };
+    });
+    utility.tagsList.length = 0;
+    renderExpenses();
+    editButtons();
+    deleteBtn();
+}
+// checkes wether the expenses amount or category or tags or payment mode was edited or not.
+function isEdited(realData, editedData) {
+    if (realData.amount !== editedData.amount ||
+        realData.category !== editedData.category ||
+        realData.paymentMode !== editedData.paymentMode ||
+        JSON.stringify(realData.tags) !== JSON.stringify(editedData.tags)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 /* notice i could have rendered the category and tags using just 1 for loop  or just 
 have copy pasted it but well it will just be a pain to write the code again and its not a good
 practice to write the same code 2 times manually... 
@@ -126,6 +178,7 @@ Also i want to categorize what each function does rather than doing 2 tasks i pr
 function does just 1 task that its given correctly and also in my opinion it will help me in
 debugging in some way or if i want to change something i wont break multiple stuff.
 */
+// adds the data of the expense editing to the edit pane.
 function addOldData() {
     const oldData = getEditingExpense(editId);
     const inputs = document.querySelectorAll('.inputs');
@@ -154,6 +207,7 @@ function addOldData() {
     utility.renderTagsList('selected-tags');
     utility.renderTagsPane(expenseTags, 'tags-list');
 }
+// gets the values of the editpane outside of the feilds
 function getValuesFromEditPane() {
     const updatedValue = {};
     const inputs = document.querySelectorAll('.inputs');
@@ -175,9 +229,10 @@ function getValuesFromEditPane() {
             updatedValue.comment = inp.value;
         };
     });
-    updatedValue.tags = utility.tagsList;
+    updatedValue.tags = [...utility.tagsList]
     return updatedValue;
 };
+// gets us the exense we are editing currently.
 function getEditingExpense(id) {
     let selectedExpense;
     for (let i = 0; i < collectiveExpenses.length; i++) {
@@ -187,22 +242,4 @@ function getEditingExpense(id) {
         };
     };
     return selectedExpense;
-};
-
-function deleteBtn() {
-    const deleteButton = document.querySelectorAll('.delete-button');
-    deleteButton.forEach(btn => {
-        btn.addEventListener('click', () => {
-            deleteExpense(btn.dataset.expenseId);
-        });
-    });
-};
-function deleteExpense(id) {
-    collectiveExpenses.forEach((exp, ind) => {
-        if (exp.id === id) {
-            collectiveExpenses.splice(ind, 1);
-            utility.saveToStorage(collectiveExpenses, 'expenses')
-            reRender();
-        }
-    })
 };

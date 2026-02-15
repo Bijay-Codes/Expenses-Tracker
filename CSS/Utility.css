@@ -33,7 +33,7 @@ body {
     font-weight: 300;
     background-color: var(--prim-bg-color);
     color: var(--sec-text);
-    text-transform: capitalize;
+    transition: all 0.5s ease-in;
 }
 
 /* Navbar */
@@ -61,8 +61,8 @@ a {
 
 .tabs:hover {
     color: blueviolet;
-    transform: translateY(4%) scale(1.05);
-    transition: color 1s, transform 0.50s;
+    transform: translateY(4%) scale(1.03);
+    transition: all 0.4 ease;
 }
 
 .selected-page {
