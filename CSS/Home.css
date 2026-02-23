@@ -1,14 +1,18 @@
 /* Filters */
 .filter {
-    background-color: var(--sec-bg-color);
-    color: var(--sec-text);
+    font-family: Outfit, sans-serif;
+    color: var(--sec-text-color);
+    background: linear-gradient(var(--main-bg-color) transparent);
+    border-radius: 1rem;
 }
 
 .filter-selector-year {
     border-radius: 1rem;
+    background-color: var(--sec-bg-color);
 }
 
 .filter-selector {
+    background-color: var(--sec-bg-color);
     border-radius: 1rem;
 }
 
@@ -60,9 +64,11 @@
     font-size: 1.3rem;
     font-weight: 800;
 }
-.expense-comment{
+
+.expense-comment {
     text-transform: capitalize;
 }
+
 .card-buttons {
     color: var(--prim-text);
     display: flex;

@@ -1,88 +1,12 @@
-:root {
-    /* Dark theme base (keep these) */
-    --prim-bg-color: #0f0f1e;
-    --sec-bg-color: #1a1a2e;
-    --main-bg-color: #2a2a3e;
-    --prim-border-color: #3a3a4e;
-
-    /* Text colors */
-    --prim-text: #f9fafb;
-    --sec-text: #9ca3af;
-    --comment-text: #c4c4c4;
-
-    /* Judgment colors (for tags/cards) */
-    --good-decision: #10b981;
-    --bad-decision: #ef4444;
-    --neutral-decision: #f59e0b;
-
-    /* Amount highlight */
-    --amount-color: #fbbf24;
-
-    /* Old accent colors (can still use these for buttons) */
-    --acc1: #5865f2;
-    --acc2: #4752c4;
-    --prim-green: #57f287;
-    --sec-orange: #faa61a;
-    --sec-red: #ed4245;
-    --prim-grey: #6b7280;
-}
-
-
-body {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    background-color: var(--prim-bg-color);
-    background-size: 120px 120px;
-    background-repeat: repeat;
-    color: var(--sec-text);
-}
-
 .greeting {
-    /* text-align: center; */
+    text-align: center;
     padding: 1rem;
 }
 
-/* Navbar */
-a {
-    text-decoration: none;
-    color: inherit;
-    font-family: inherit;
-}
-
-.navbar-links {
-    display: flex;
-    color: var(--prim-text);
-    gap: 1rem;
-}
-
-.tabs {
-    font: inherit;
-    background-color: transparent;
-    border: 2px solid var(--prim-border-color);
-    color: var(--acc1);
-    padding: 1%;
-    border-radius: 999px;
-
-}
-
-.tabs:hover {
-    color: blueviolet;
-    transition: color 1s;
-}
-
-.selected-page {
-    color: blueviolet;
-}
-
-.selected-page:hover {
-    background-color: var(--sec-bg-color);
-    color: var(--acc1);
-    transition: background-color 1.5s, color 1s;
-}
-
 #expense-form {
-    width: 60vw;
+    width: 50%;
     height: auto;
+    margin: auto;
     background-color: transparent;
     padding: 1rem;
     border: 0.5px solid var(--acc1);
@@ -106,9 +30,11 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 80%;
 }
 
-.inputs:hover, select:hover{
+.inputs:hover,
+select:hover {
     background-color: rgba(96, 0, 251, 0.363);
 }
+
 .tags-button {
     background-color: var(--prim-grey);
     color: var(--prim-text);
@@ -117,7 +43,8 @@ input[type="number"]::-webkit-outer-spin-button {
     padding: 0.16rem;
     border-radius: 999px;
 }
-.tags-button:hover{
+
+.tags-button:hover {
     background-color: var(--prim-green);
     transform: scale(1.04);
 }
@@ -150,7 +77,7 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--prim-text);
     border-radius: 1rem;
     height: 10%;
-    width: 80%;
+    width: 50%;
 }
 
 .add-button {
@@ -165,7 +92,8 @@ input[type="number"]::-webkit-outer-spin-button {
     border: 1px solid var(--prim-green);
     padding: 0.24rem;
 }
-label:hover{
+
+label:hover {
     color: var(--acc1);
     font-weight: 700;
 }

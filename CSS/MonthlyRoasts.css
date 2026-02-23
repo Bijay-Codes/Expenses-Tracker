@@ -1,0 +1,75 @@
+.filter {
+    font-family: Outfit, sans-serif;
+    color: var(--sec-text-color);
+    background: linear-gradient(var(--main-bg-color) transparent);
+    border-radius: 1rem;
+}
+
+.filter-selector-year {
+    border-radius: 1rem;
+    background-color: var(--sec-bg-color);
+}
+
+.filter-selector {
+    background-color: var(--sec-bg-color);
+    border-radius: 1rem;
+}
+
+.tagline {
+    color: var(--prim-text);
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    padding: 1rem;
+    margin-bottom: 30px;
+}
+
+.monthly-roast {
+    color: var(--prim-text);
+    background-color: var(--sec-bg-color);
+    padding: 1.2rem;
+    font-family: Outfit, sans-serif;
+    height: 60%;
+    width: 60%;
+    margin: auto;
+    border: 1px solid var(--prim-border-color);
+    border-radius: 1rem;
+}
+
+.monthly-roast:hover {
+    box-shadow: 2px 2px 200px rgb(34, 0, 255);
+    transform: scale(1.3rem);
+    border-radius: 1.3rem;
+    transition: all 0.5s ease-in;
+}
+
+.heading {
+    text-decoration: underline;
+    display: block;
+    color: var(--amount-color);
+}
+
+.monthly-expense {
+    display: block;
+    color: var(--prim-text);
+}
+
+.hall-of-shame {
+    background-color: var(--main-bg-color);
+    padding: 1rem;
+    border-radius: 1.2rem;
+    margin-bottom: 5%;
+}
+
+.hall-of-shame:hover {
+    transition: all 0.5s ease-in-out;
+    box-shadow: 1px 1px 50rem var(--bad-decision);
+}
+
+.statusbox {
+    padding: 1em;
+    line-height: 1.5;
+    background-color: var(--prim-border-color);
+    border-radius: 1rem;
+    margin-bottom: 5%;
+}
