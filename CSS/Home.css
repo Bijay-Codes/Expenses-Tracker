@@ -53,7 +53,7 @@
 .expense-amount {
     color: var(--amount-color);
     font-size: 1.2rem;
-    font-weight: 750;
+    font-weight: 700;
 }
 
 .expense-amount:hover {

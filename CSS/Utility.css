@@ -62,7 +62,7 @@ a {
 .tabs:hover {
     color: blueviolet;
     transform: translateY(4%) scale(1.03);
-    transition: all 0.4 ease;
+    transition: all 0.5s ease;
 }
 
 .selected-page {
@@ -73,4 +73,8 @@ a {
     background-color: var(--sec-bg-color);
     color: var(--acc1);
     transition: background-color 1.5s, color 1s;
+}
+
+.hidden{
+    display: none;
 }

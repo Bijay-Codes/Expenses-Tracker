@@ -4,17 +4,17 @@ import { category } from "./Data/category.js";
 import { expenseTags } from "./Data/tags.js";
 import { scores } from "./Data/RoastData.js";
 let editId = '';
+let filteredData = [];
+let statusbox = document.querySelector('.statusbox');
+
+renderListeners();
 // renderss the expenses pane and all cards.
 function renderExpenses() {
     const tagsPane = document.querySelector('.expenses-pane');
-    let filteredData = utility.filterByMonth();
-    let statusbox = document.querySelector('.statusbox');
+    filteredData = utility.filterByMonth();
     let html = '';
     if (filteredData.length === 0) {
-        statusbox.innerText = 'No Expenses Yet'
-    }
-    else {
-        statusbox.innerText = ''
+        statusbox.innerText = 'No Expenses Yet For This Selected Month ^_^ .';
     }
     filteredData.forEach(elem => {
         html += `<div class="expense-card">
@@ -29,13 +29,32 @@ function renderExpenses() {
                 <span class="expense-mode online secondary">${elem.paymentMode === '0' ? 'Online' : 'Offline'} Payment</span>
             </div>
             <div class="card-buttons">${renderButtons(elem.createdAt, elem.id)}</div>
-        </div>`
+        </div>`;
     });
     tagsPane.innerHTML = html;
+    utility.roastUser(filteredData, statusbox);
+    editButtons();
+    deleteBtn();
 };
 
-// renders expenses when the filter is active.
-function reRenderExpenses() {
+//renders everything...
+renderPage();
+function renderPage() {
+    renderExpenses();
+    editButtons();
+    addClassToForm();
+    utility.renderCategory(category, 'category-list');
+    utility.renderTagsPane(expenseTags, 'tags-list')
+    submitButtonClick();
+    deleteBtn();
+};
+// renders persistent eventListeners and functions that should only be run once.
+function renderListeners() {
+    // renders both year and month dropdowns
+    utility.renderMonths('filter-selector');
+    utility.renderYearFilter('filter-selector-year');
+
+    // renders expenses when the filter is active.
     const month = document.querySelector('.filter-selector');
     const year = document.querySelector('.filter-selector-year');
     month.addEventListener('change', () => {
@@ -44,31 +63,6 @@ function reRenderExpenses() {
     year.addEventListener('change', () => {
         renderExpenses();
     });
-};
-// renders both year and month dropdowns
-utility.renderMonths('filter-selector');
-function renderYearFilter() {
-    const format = utility.oldestAndLatestExpense();
-    const yearFilter = document.querySelector('.filter-selector-year');
-    let html = '';
-    for (let i = format.oldest; i < format.latest + 1; i++) {
-        html += `<option value="${i}"${i === Number(dayjs().format('YYYY')) ? 'selected' : ''}>${i}</option>`
-    };
-    yearFilter.innerHTML = html;
-};
-
-//renders everything...
-renderPage();
-function renderPage() {
-    renderYearFilter();
-    renderExpenses();
-    reRenderExpenses();
-    editButtons();
-    addClassToForm();
-    utility.renderCategory(category, 'category-list');
-    utility.renderTagsPane(expenseTags, 'tags-list')
-    submitButtonClick();
-    deleteBtn();
 };
 // determines if the expense will be locked or not.
 function isLocked(timeCreated) {
@@ -123,13 +117,14 @@ function deleteBtn() {
         });
     });
 };
-
 // actually  deletes the expenses.
 function deleteExpense(id) {
     collectiveExpenses.forEach((exp, ind) => {
         if (exp.id === id) {
             collectiveExpenses.splice(ind, 1);
-            utility.saveToStorage(collectiveExpenses, 'expenses')
+            utility.saveToStorage(collectiveExpenses, 'expenses');
+            scores.deleteCount++;
+            utility.saveToStorage(scores, 'scores');
             renderExpenses();
         };
     });
@@ -158,7 +153,9 @@ function submitButton() {
     renderExpenses();
     editButtons();
     deleteBtn();
-}
+    document.getElementById('edit-pane').classList.add('hidden');
+    document.getElementById('edit-pane').classList.remove('editing');
+};
 // checkes wether the expenses amount or category or tags or payment mode was edited or not.
 function isEdited(realData, editedData) {
     if (realData.amount !== editedData.amount ||
@@ -170,7 +167,7 @@ function isEdited(realData, editedData) {
     else {
         return false;
     }
-}
+};
 /* notice i could have rendered the category and tags using just 1 for loop  or just 
 have copy pasted it but well it will just be a pain to write the code again and its not a good
 practice to write the same code 2 times manually... 

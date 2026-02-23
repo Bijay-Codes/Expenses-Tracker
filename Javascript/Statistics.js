@@ -1,5 +1,5 @@
 import { collectiveExpenses } from "./Data/expenses.js";
-import { filterByMonth, oldestAndLatestExpense } from "./utility.js";
+import { filterByMonth, renderYearFilter } from "./utility.js";
 import { analyzeExpenses, data, preff, resetData } from "./Data/RoastData.js";
 const chartContainer = document.querySelector('.stats-charts');
 const statsPane = document.querySelector('.stats-pane');
@@ -19,7 +19,7 @@ function clearAllStats() {
     chartContainer.classList.add('collapse');
     statsPane.classList.add('collapse');
     chartContainer.innerHTML = '';
-}
+};
 const categoryColors = {
     'Groceries 🛒': '#10b981',
     'Restaurants & Takeout 🍕': '#ef4444',
@@ -45,7 +45,7 @@ const categoryColors = {
     'Financial 💳': '#dc2626'
 };
 reRenderStats();
-renderYearFilter();
+renderYearFilter('filter-selector-year');
 
 function reRenderStats() {
     const input = document.querySelector('.filter-selector');
@@ -77,92 +77,15 @@ function renderStats() {
     }
     analyzeExpenses(filterData);
     drawCategoryChart();
-    top4Category();
     top4tags();
     paymentPerCategory();
     totalAmount();
     paymentCategory();
     paymentMode();
-}
-// function getValues() {
-//     let total = 0;
-//     filterData.forEach(exp => {
-//         total += Number(exp.amount);
-//         paymentSummary(exp.paymentMode === '0' ? 'online' : 'offline', Number(exp.amount));
-//         getCategory(exp.category, Number(exp.amount));
-//         getTags(exp.tags)
-//     });
-//     data.totalAmt = total;
-// };
-// function paymentSummary(mode, amount) {
-//     if (mode === 'online') {
-//         data.payment.paymentOnline += amount;
-//         if (!data.payment[mode]) {
-//             data.payment[mode] = 1;
-//         } else {
-//             data.payment[mode]++;
-//         };
-//     }
-//     else {
-//         data.payment.paymentOffline += amount
-//         if (!data.payment[mode]) {
-//             data.payment[mode] = 1;
-//         } else {
-//             data.payment[mode]++;
-//         };
-//     };
-// };
-// function getCategory(category, amount) {
-//     if (!data.category.timesUsed[category]) {
-//         data.category.moneySpent[category] = amount;
-//         data.category.timesUsed[category] = 1;
-//     }
-//     else {
-//         data.category.moneySpent[category] += amount;
-//         data.category.timesUsed[category]++;
-//     };
-// };
-// function getTags(tags) {
-//     tags.forEach(tag => {
-//         if (!data.usedTags[tag]) {
-//             data.usedTags[tag] = 1;
-//         }
-//         else {
-//             data.usedTags[tag]++;
-//         };
-//     });
-// };
-// function getPercent() {
-//     onlinePercent = (data.payment.paymentOnline / data.totalAmt * 100).toFixed(2);
-//     offlinePercent = (data.payment.paymentOffline / data.totalAmt * 100).toFixed(2);
-//     categoryPercent = {};
-//     for (const [key, value] of Object.entries(data.category.moneySpent)) {
-//         categoryPercent[key] = (value / data.totalAmt * 100).toFixed(2);
-//     };
-// };
-// function getMostPreferred() {
-//     if (data.payment.online && data.payment.offline) {
-//         if (data.payment.online > data.payment.offline) {
-//             preff.preffPaymentMode = 'Online';
-//         }
-//         else {
-//             preff.preffPaymentMode = 'Offline';
-//         }
-//     }
-//     else {
-//         preff.preffPaymentMode = data.payment.online ? 'Online' : 'Offline' || data.payment.offline ? 'Offline' : 'Online';
-//     }
-//     for (const [key, val] of Object.entries(data.category.timesUsed)) {
-//         if (preff.preffCategory.value < val) {
-//             preff.preffCategory.key = key;
-//             preff.preffCategory.value = val;
-//         };
-//     };
-//     preff.top4 = Object.entries(data.usedTags).sort((a, b) => b[1] - a[1]).slice(0, 4);
-// };
+};
 function totalAmount() {
     DOMS.totalAmt.innerHTML = `<span class="main-text">Total Amount ⇒ </span><span class="amount values">₹${data.totalAmt}</span>`;
-}
+};
 function paymentCategory() {
     const mostSpent = document.querySelector('.most-spent-category');
     const mostUsed = document.querySelector('.most-used-category');
@@ -181,7 +104,7 @@ function paymentMode() {
     const payment = document.querySelector('.payment-mode');
     payment.innerHTML = `<span class="preffered-mode">Preffered Payment Mode ⇒ ${preff.preffPaymentMode} Payment
          </div> (Online • <span class="times-used">${data.payment.online}</span> Offline • <span class="times-used">${data.payment.offline}</span>)`;
-}
+};
 function paymentPerCategory() {
     const perCategory = document.querySelector('.payment-per-category');
     let html = '';
@@ -189,7 +112,7 @@ function paymentPerCategory() {
         html += `<div class="category-sec">${key} • <span class="times-used">${val}x</span></div>`;
     }
     perCategory.innerHTML = html;
-}
+};
 function top4tags() {
     const tags = document.querySelector('.top-4-tags');
     let html = '<div class="tags-heading">Top 4 Tags </div>'
@@ -197,20 +120,7 @@ function top4tags() {
         html += `<div class="tag">${tag[0]} (<span class="times-used">${tag[1]}x</span>)</div>`;
     })
     tags.innerHTML = html;
-}
-function top4Category() {
-    const sorted = Object.entries(data.category.moneySpent).sort((a, b) => b[1] - a[1]);
-    let top4 = sorted.slice(0, 4);
-    const deleted = sorted.slice(4);
-    let othersTotal = 0;
-    if (sorted.length > 4) {
-        deleted.forEach(elem => {
-            othersTotal += elem[1];
-        });
-    }
-    data.category.others = othersTotal;
-    data.category.top4Data = top4;
-}
+};
 function drawCategoryChart() {
     const ctx = document.getElementById('category-charts');
     const chartData = getDataForChart();
@@ -251,7 +161,7 @@ function drawCategoryChart() {
             }
         }
     });
-}
+};
 function getDataForChart() {
     const chartData = [];
     const labels = [];
@@ -267,16 +177,4 @@ function getDataForChart() {
         color.push('#475569')
     }
     return { chartData, labels, color }
-}
-
-function renderYearFilter() {
-    if (collectiveExpenses.length !== 0) {
-        const format = oldestAndLatestExpense();
-        const yearFilter = document.querySelector('.filter-selector-year');
-        let html = '';
-        for (let i = format.oldest; i < format.latest + 1; i++) {
-            html += `<option value="${i}"${i === Number(dayjs().format('YYYY')) ? 'selected' : ''}>${i}</option>`
-        };
-        yearFilter.innerHTML = html;
-    }
-}
+};

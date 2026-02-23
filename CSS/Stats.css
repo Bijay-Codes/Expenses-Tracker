@@ -20,7 +20,7 @@
 
 
 .stats-charts {
-    max-width:34%;
+    max-width: 34%;
     height: auto;
     margin: auto;
     background-color: var(--sec-bg-color);
@@ -42,7 +42,7 @@
 .stats-pane:hover {
     background-color: var(--main-bg-color);
     transform: scale(1.02);
-    transition: all 0.5 ease;
+    transition: all 0.5s ease;
 }
 
 .main-stats {

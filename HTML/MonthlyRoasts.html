@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses-TRacker/Monthly-Roasts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/Utility.css">
+    <link rel="stylesheet" href="../CSS/MonthlyRoasts.css">
+</head>
+
+<body>
+    <div class="navbar-links">
+        <div class="tabs"><a href="./Statistics.html">Statistics</a></div>
+        <div class="tabs"><a href="./AddExpenses.html">Add Expenses</a></div>
+        <div class="tabs"><a href="./Home.html">Home</a></div>
+        <div class="tabs selected-page">Monthly-Roasts</div>
+    </div>
+    <div class="filter">
+        <select name="filter-selector" class="filter-selector filter"></select>
+        <select name="filter-selector-year" class="filter-selector-year filter"></select>
+    </div>
+    <h1 class="tagline"></h1>
+    <div class="monthly-roast">
+        <div class="main-roasts">
+            <div class="hall-of-shame"></div>
+        </div>
+        <div class="body-roasts">
+            <div class="statusbox"></div>
+            <div class="monthly-roast-static"></div>
+        </div>
+    </div>
+    <script type="module" src="../Javascript/RoastPage.js"></script>
+</body>
+
+</html>
