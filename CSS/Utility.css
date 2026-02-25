@@ -27,6 +27,35 @@
     --prim-grey: #6b7280;
 }
 
+.statusbox {
+    font-size: 2rem;
+    background-color: var(--sec-bg-color);
+    border-radius: 1rem;
+}
+
+/* Filters */
+.filter {
+    font-family: Outfit, sans-serif;
+    color: var(--sec-text);
+    background: linear-gradient(var(--main-bg-color), transparent);
+    border-radius: 1rem;
+}
+
+.filter-selector-year {
+    border-radius: 1rem;
+    background-color: var(--sec-bg-color);
+}
+
+.filter-selector {
+    background-color: var(--sec-bg-color);
+    border-radius: 1rem;
+}
+
+.wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+}
 
 body {
     font-family: 'DM Sans', sans-serif;
@@ -46,8 +75,16 @@ a {
 
 .navbar-links {
     display: flex;
+    flex-wrap: wrap;
     color: var(--prim-text);
     gap: 1rem;
+    background-color: var(--sec-bg-color);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--prim-border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .tabs {
@@ -78,6 +115,32 @@ a {
     transition: background-color 1.5s, color 1s;
 }
 
-.hidden{
+.tags-button {
+    background-color: var(--prim-grey);
+    color: var(--prim-text);
+    border: 1px solid var(--main-bg-color);
+    text-align: center;
+    padding: 0.16rem;
+    border-radius: 999px;
+}
+
+.tags-button:hover {
+    background-color: var(--prim-green);
+    transform: scale(1.04);
+}
+
+.tags-button:active {
+    visibility: 0.3;
+    transform: scale(0.8);
+    transition: all 0.2s ease-in;
+}
+
+label:hover {
+    color: var(--acc1);
+    font-weight: 700;
+}
+
+.hidden,
+.collapse {
     display: none;
 }

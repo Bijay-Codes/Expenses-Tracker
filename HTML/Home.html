@@ -20,49 +20,52 @@
         <div class="tabs"><a href="./AddExpenses.html">Add Expenses</a></div>
         <div class="tabs selected-page">Home</div>
     </div>
-    <div class="filter">
-        <select name="filter-selector" class="filter-selector filter"></select>
-        <select name="filter-selector-year" class="filter-selector-year filter"></select>
-    </div>
-    <div class="statusbox"></div>
-    <div id="edit-pane" class="hidden">
-        <div class="editing-pane">
-            <div class="edit-header">
-                <input type="number" name="amount-input" class="inputs amount-input" data-input-type="amount">
-                <div class="expense-category">
-                    <select name="category" data-input-type="category" class="category-list inputs"></select>
+    <div class="wrapper">
+        <div class="filter">
+            <select name="filter-selector" class="filter-selector filter"></select>
+            <select name="filter-selector-year" class="filter-selector-year filter"></select>
+        </div>
+        <div class="statusbox"></div>
+        <div id="edit-pane" class="hidden">
+            <div class="editing-pane">
+                <div class="edit-header">
+                    <input type="number" name="amount-input" class="inputs amount-input" data-input-type="amount">
+                    <div class="expense-category">
+                        <select name="category" data-input-type="category" class="category-list inputs"></select>
+                    </div>
                 </div>
-            </div>
-            <div class="edit-body">
-                <div class="date-time">
-                    <label for="datetime">Date & Time: </label>
-                    <input type="datetime-local" class="inputs datetime" data-input-type="datetime" name="datetime">
+                <div class="edit-body">
+                    <div class="date-time">
+                        <label for="datetime">Date & Time: </label>
+                        <input type="datetime-local" class="inputs datetime" data-input-type="datetime" name="datetime">
+                    </div>
+                    <div class="payment-mode">
+                        <label for="payment-mode">Payment Mode: </label>
+                        <select name="payment-mode" class="inputs payment-mode" data-input-type="payment-mode">
+                            <option value="0" selected>Online Payment</option>
+                            <option value="1">Offline Payment</option>
+                        </select>
+                    </div>
+                    <div class="tags-section">
+                        <div class="selected-tags">Selected Tags (Max 4): </div>
+                        <div class="tags-list"></div>
+                    </div>
                 </div>
-                <div class="payment-mode">
-                    <label for="payment-mode">Payment Mode: </label>
-                    <select name="payment-mode" class="inputs payment-mode" data-input-type="payment-mode">
-                        <option value="0" selected>Online Payment</option>
-                        <option value="1">Offline Payment</option>
-                    </select>
-                </div>
-                <div class="tags-section">
-                    <div class="selected-tags">Selected Tags (Max 4): </div>
-                    <div class="tags-list"></div>
-                </div>
-            </div>
-            <div class="edit-footer">
-                <label for="comment">Comment: </label>
-                <textarea name="comment" class="inputs comment" data-input-type="comment"
-                    placeholder="Add notes about this expense..."></textarea>
-                <div class="footer-buttons">
-                    <button type="submit" class="visibility-buttons submit-button">Submit</button>
-                    <button type="button" class="visibility-buttons cancel-button">Cancel</button>
+                <div class="edit-footer">
+                    <label for="comment">Comment: </label>
+                    <textarea name="comment" class="inputs comment" data-input-type="comment"
+                        placeholder="Add notes about this expense..."></textarea>
+                    <div class="footer-buttons">
+                        <button type="submit" class="visibility-buttons submit-button">Submit</button>
+                        <button type="button" class="visibility-buttons cancel-button">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="expenses-pane"></div>
     </div>
-    <div class="expenses-pane"></div>
     <script type="module" src="../Javascript/Home.js"></script>
+
 </body>
 
 </html>

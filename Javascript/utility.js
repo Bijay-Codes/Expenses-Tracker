@@ -104,7 +104,10 @@ export function oldestAndLatestExpense() {
             }
         });
         return date;
+    }else {
+        return dayjs().format('YYYY');
     }
+
 };
 export function renderMonths(classSelector) {
     let selector = document.querySelector(`.${classSelector}`);

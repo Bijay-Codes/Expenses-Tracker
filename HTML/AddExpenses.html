@@ -19,46 +19,47 @@
         <div class="tabs"><a href="./Statistics.html">Statistics</a></div>
         <div class="tabs selected-page">Add Expenses</div>
     </div>
-    <div class="greeting">Welcome to the page</div>
-    <div class="statusbox"></div>
-    <form id="expense-form">
-        <div class="form-header">
-            <div class="form-amount">
-                <label for="amount">Amount • </label>
-                <input type="number" name="amount" placeholder="Enter Amount- 0.00" required class="inputs">
-            </div>
-            <div class="form-category">
-                <label for="category">Category • </label>
-                <select name="category" class="category-list select"></select>
-            </div>
-        </div>
-        <div class="form-body">
-            <div class="form-date-time">
-                <label for="current-date-time">Would you like to use the curent Date/Time for the Expense • </label>
-                <input type="checkbox" name="checkbox_datetime" class="checkbox-current-datetime">
-                <div class="date-time-input">
-                    <label for="datetime">Date & Time • </label>
-                    <input type="datetime-local" class="datetime inputs" name="datetime" required>
+    <div class="wrapper">
+        <div class="statusbox"></div>
+        <form id="expense-form">
+            <div class="form-header">
+                <div class="form-amount">
+                    <label for="amount">Amount • </label>
+                    <input type="number" name="amount" placeholder="Enter Amount- 0.00" required class="inputs">
+                </div>
+                <div class="form-category">
+                    <label for="category">Category • </label>
+                    <select name="category" class="category-list select"></select>
                 </div>
             </div>
-            <div class="form-payment-mode">
-                <label for="payment-mode">Payment Mode • </label>
-                <select name="paymentMode" class="select">
-                    <option value="0" selected>Online Payment</option>
-                    <option value="1">Offline Payment</option>
-                </select>
+            <div class="form-body">
+                <div class="form-date-time">
+                    <label for="current-date-time">Would you like to use the curent Date/Time for the Expense • </label>
+                    <input type="checkbox" name="checkbox_datetime" class="checkbox-current-datetime">
+                    <div class="date-time-input">
+                        <label for="datetime">Date & Time • </label>
+                        <input type="datetime-local" class="datetime inputs" name="datetime" required>
+                    </div>
+                </div>
+                <div class="form-payment-mode">
+                    <label for="payment-mode">Payment Mode • </label>
+                    <select name="paymentMode" class="select">
+                        <option value="0" selected>Online Payment</option>
+                        <option value="1">Offline Payment</option>
+                    </select>
+                </div>
+                <div class="tags-section">
+                    <div class="selected-tags">Selected Tags (Max 4) • </div>
+                    <div class="tags-list"></div>
+                </div>
             </div>
-            <div class="tags-section">
-                <div class="selected-tags">Selected Tags (Max 4) • </div>
-                <div class="tags-list"></div>
+            <div class="form-footer">
+                <label for="comment">Comment • </label>
+                <textarea name="comment" placeholder="Add notes about this expense..." class="inputs"></textarea>
             </div>
-        </div>
-        <div class="form-footer">
-            <label for="comment">Comment • </label>
-            <textarea name="comment" placeholder="Add notes about this expense..." class="inputs"></textarea>
-        </div>
-        <button type="submit" class="add-button">Add Expense</button>
-    </form>
+            <button type="submit" class="add-button">Add Expense</button>
+        </form>
+    </div>
     <script type="module" src="../Javascript/AddExpenses.js"></script>
 </body>
 

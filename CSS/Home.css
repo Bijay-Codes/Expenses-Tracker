@@ -1,25 +1,3 @@
-/* Filters */
-.filter {
-    font-family: Outfit, sans-serif;
-    color: var(--sec-text-color);
-    background: linear-gradient(var(--main-bg-color) transparent);
-    border-radius: 1rem;
-}
-
-.filter-selector-year {
-    border-radius: 1rem;
-    background-color: var(--sec-bg-color);
-}
-
-.filter-selector {
-    background-color: var(--sec-bg-color);
-    border-radius: 1rem;
-}
-
-.statusbox {
-    background-color: var(--sec-bg-color);
-}
-
 /* Expenses pane starts here */
 .expenses-pane {
     background-color: var(--sec-bg-color);
@@ -108,10 +86,6 @@
 }
 
 /* Edit pane starts here */
-.hidden {
-    display: none;
-}
-
 .editing {
     position: fixed;
     top: 0;
@@ -123,7 +97,7 @@
     align-items: center;
     background-color: var(--prim-bg-color);
     opacity: 0.9;
-    padding: 1%;
+    padding: 1rem;
 }
 
 .editing-pane {
@@ -143,20 +117,6 @@
     border-radius: 999px;
     text-align: center;
     padding: 1%;
-}
-
-.tags-button {
-    background-color: var(--prim-grey);
-    color: var(--prim-text);
-    border: 1px solid var(--main-bg-color);
-    text-align: center;
-    padding: 0.16rem;
-    border-radius: 999px;
-}
-
-.tags-button:hover {
-    background-color: var(--prim-green);
-    transform: scale(1.04);
 }
 
 .selected {
@@ -186,7 +146,3 @@
     padding: 1%;
 }
 
-label:hover {
-    color: var(--acc1);
-    font-weight: 700;
-}

@@ -1,5 +1,5 @@
 import { collectiveExpenses } from "./Data/expenses.js";
-import { filterByMonth, renderYearFilter } from "./utility.js";
+import { filterByMonth, renderYearFilter, renderMonths } from "./utility.js";
 import { analyzeExpenses, data, preff, resetData } from "./Data/RoastData.js";
 const chartContainer = document.querySelector('.stats-charts');
 const statsPane = document.querySelector('.stats-pane');
@@ -13,6 +13,7 @@ const DOMS = {
     allTags: document.querySelector('.all-tags'),
     statusbox: document.querySelector('.statusbox')
 };
+renderMonths('filter-selector');
 let filterData = filterByMonth();
 function clearAllStats() {
     resetData();

@@ -1,28 +1,3 @@
-/* Filters */
-.filter {
-    font-family: Outfit, sans-serif;
-    color: var(--sec-text-color);
-    background: linear-gradient(var(--main-bg-color) transparent);
-    border-radius: 1rem;
-}
-
-.filter-selector-year {
-    background-color: var(--sec-bg-color);
-    border-radius: 1rem;
-}
-
-.filter-selector {
-    background-color: var(--sec-bg-color);
-    border-radius: 1rem;
-}
-
-.statusbox {
-    font-size: 2rem;
-    background-color: var(--sec-bg-color);
-    border-radius: 1rem;
-}
-
-
 .stats-charts {
     max-width: 34%;
     height: auto;
@@ -77,6 +52,7 @@
     color: var(--prim-text);
 }
 
-.collapse {
-    display: none;
+@media (max-width: 768px) {
+    .stats-charts { max-width: 90%; }
+    .stats-pane { width: 90%; }
 }

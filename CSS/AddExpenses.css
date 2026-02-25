@@ -1,8 +1,3 @@
-.greeting {
-    text-align: center;
-    padding: 1rem;
-}
-
 #expense-form {
     width: 50%;
     height: auto;
@@ -25,28 +20,13 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--prim-text);
     border: 1px solid var(--prim-border-color);
     border-radius: 999px;
-    padding: 0.5%;
-    height: 10%;
-    width: 80%;
+    text-align: center;
+    padding: 1%;
 }
 
 .inputs:hover,
 select:hover {
     background-color: rgba(96, 0, 251, 0.363);
-}
-
-.tags-button {
-    background-color: var(--prim-grey);
-    color: var(--prim-text);
-    border: 1px solid var(--main-bg-color);
-    text-align: center;
-    padding: 0.16rem;
-    border-radius: 999px;
-}
-
-.tags-button:hover {
-    background-color: var(--prim-green);
-    transform: scale(1.04);
 }
 
 .tags-list::-webkit-scrollbar {
@@ -93,7 +73,12 @@ select:hover {
     padding: 0.24rem;
 }
 
-label:hover {
-    color: var(--acc1);
-    font-weight: 700;
+@media (max-width: 768px) {
+    .stats-charts {
+        max-width: 100%;
+    }
+
+    .stats-pane {
+        width: 100%;
+    }
 }

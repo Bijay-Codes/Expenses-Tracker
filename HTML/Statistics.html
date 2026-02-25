@@ -21,42 +21,29 @@
         <div class="tabs"><a href="./MonthlyRoasts.html">Monthly-Roasts</a></div>
         <div class="tabs selected-page">Statistics</div>
     </div>
-    <h1>Hello!! Welcome to Statistics Page! This is Statistics Time</h1>
-    <div class="filter">
-        <select name="filter-selector" class="filter filter-selector">
-            <option value="all" selected>All</option>
-            <option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">August</option>
-            <option value="09">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-        </select>
-        <select name="filter-selector-year" class="filter filter-selector-year">
-        </select>
-    </div>
-    <span class="statusbox"></span>
-    <div class="stats-charts"></div>
-    <div class="stats-pane">
-        <div class="main-stats">
-            <div class="total-spent"></div>
-            <div class="payment-category">
-                <div class="most-spent-category"></div>
-                <div class="most-used-category"></div>
+    <div class="wrapper">
+        <div class="filter">
+            <select name="filter-selector" class="filter filter-selector"></select>
+            <select name="filter-selector-year" class="filter filter-selector-year">
+            </select>
+        </div>
+        <span class="statusbox"></span>
+        <div class="stats-charts"></div>
+        <div class="stats-pane">
+            <div class="main-stats">
+                <div class="total-spent"></div>
+                <div class="payment-category">
+                    <div class="most-spent-category"></div>
+                    <div class="most-used-category"></div>
+                </div>
+                <div class="top-4-tags"></div>
+                <div class="payment-mode"></div>
             </div>
-            <div class="top-4-tags"></div>
-            <div class="payment-mode"></div>
+            <div class="additional-stats">
+                <div class="payment-per-category"></div>
+            </div>
+            <div class="all-tags"></div>
         </div>
-        <div class="additional-stats">
-            <div class="payment-per-category"></div>
-        </div>
-        <div class="all-tags"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="../Javascript/Statistics.js"></script>
