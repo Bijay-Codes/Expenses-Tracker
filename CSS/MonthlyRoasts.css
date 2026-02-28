@@ -1,3 +1,9 @@
+@media (max-width: 550px) {
+    body{
+        line-height: 1.4;
+    }
+    
+}
 .tagline {
     color: var(--prim-text);
     text-align: center;
@@ -12,9 +18,9 @@
     background-color: var(--sec-bg-color);
     padding: 1.2rem;
     font-family: Outfit, sans-serif;
-    height: 60%;
-    width: 60%;
-    margin: auto;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     border: 1px solid var(--prim-border-color);
     border-radius: 1rem;
 }

@@ -25,20 +25,61 @@
     --sec-orange: #faa61a;
     --sec-red: #ed4245;
     --prim-grey: #6b7280;
+
+}
+
+@media (max-width:550px) {
+    .wrapper {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    img,
+    canvas {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .navbar-links {
+        display: flex;
+        flex-wrap: nowrap;
+        font-size: 1.2rem;
+        justify-content: center;
+        gap: 0.8rem;
+        padding: 0.5rem;
+    }
+
+}
+
+* {
+    box-sizing: border-box;
 }
 
 .statusbox {
-    font-size: 2rem;
-    background-color: var(--sec-bg-color);
+    width: 90%;
+    margin: auto;
+    padding: 0.5rem;
     border-radius: 1rem;
+    background: linear-gradient(transparent, var(--sec-bg-color));
+    font-size: 1.2rem;
 }
 
 /* Filters */
 .filter {
     font-family: Outfit, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    gap: 1rem;
+    width: 90%;
     color: var(--sec-text);
     background: linear-gradient(var(--main-bg-color), transparent);
     border-radius: 1rem;
+    font-size: 1.2rem;
+    padding: 0.5rem;
 }
 
 .filter-selector-year {
@@ -58,12 +99,17 @@
 }
 
 body {
+    padding: 0;
+    margin: 0;
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
     background-color: var(--prim-bg-color);
     color: var(--sec-text);
     transition: all 0.5s ease-in;
     line-height: 1.7rem;
+    font-size: 1.2rem;
+    overflow-x: hidden;
+
 }
 
 /* Navbar */
@@ -74,8 +120,12 @@ a {
 }
 
 .navbar-links {
+    height: 20%;
+    width: 100%;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
+    margin: auto;
     color: var(--prim-text);
     gap: 1rem;
     background-color: var(--sec-bg-color);
@@ -85,6 +135,7 @@ a {
     position: sticky;
     top: 0;
     z-index: 100;
+    border-radius: 0 0 1.2rem 1.2rem;
 }
 
 .tabs {
@@ -96,6 +147,7 @@ a {
     color: var(--acc1);
     padding: 0.3rem;
     border-radius: 999px;
+    white-space: nowrap;
 
 }
 
@@ -130,7 +182,7 @@ a {
 }
 
 .tags-button:active {
-    visibility: 0.3;
+    opacity: 0.3;
     transform: scale(0.8);
     transition: all 0.2s ease-in;
 }

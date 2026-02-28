@@ -1,11 +1,37 @@
 #expense-form {
-    width: 50%;
+    width: 70%;
     height: auto;
     margin: auto;
     background-color: transparent;
     padding: 1rem;
     border: 0.5px solid var(--acc1);
     border-radius: 1rem;
+}
+
+
+@media (max-width: 550px) {
+    .stats-charts {
+        max-width: 100%;
+    }
+
+    .stats-pane {
+        width: 100%;
+    }
+
+    #expense-form {
+        margin: auto;
+        width: 100%;
+    }
+
+    .select,
+    .inputs {
+        min-width: fit-content;
+        font-size: 1.1rem;
+    }
+
+    .tags-list {
+        max-width: 100%;
+    }
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -46,6 +72,7 @@ select:hover {
     max-height: 40vh;
     max-width: 60vw;
     overflow-y: auto;
+    cursor: pointer;
 }
 
 .selected {
@@ -60,25 +87,27 @@ select:hover {
     width: 50%;
 }
 
+.select:hover {
+    cursor: grab;
+    box-shadow: 1px, 1px 20px red;
+}
+
+.select:active {
+    cursor: grabbing;
+}
+
 .add-button {
     background-color: var(--prim-grey);
     color: var(--prim-text);
     border: 1px solid grey;
     border-radius: 1rem;
+    margin: auto;
+    cursor: pointer;
 }
 
 .add-button:hover {
     background-color: var(--good-decision);
+    border-radius: 1.2rem;
     border: 1px solid var(--prim-green);
     padding: 0.24rem;
-}
-
-@media (max-width: 768px) {
-    .stats-charts {
-        max-width: 100%;
-    }
-
-    .stats-pane {
-        width: 100%;
-    }
 }

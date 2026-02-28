@@ -1,5 +1,14 @@
+@media (max-width: 550px) {
+    .stats-charts {
+        min-width: 90%;
+    }
+    .stats-pane {
+        min-width: 90%;
+    }
+}
+
 .stats-charts {
-    max-width: 34%;
+    max-width: 50%;
     height: auto;
     margin: auto;
     background-color: var(--sec-bg-color);
@@ -9,8 +18,7 @@
 }
 
 .stats-pane {
-    height: auto;
-    width: 60%;
+    max-width: 60%;
     background-color: var(--sec-bg-color);
     text-align: center;
     margin: auto;
@@ -50,9 +58,4 @@
 
 .keys {
     color: var(--prim-text);
-}
-
-@media (max-width: 768px) {
-    .stats-charts { max-width: 90%; }
-    .stats-pane { width: 90%; }
 }

@@ -6,6 +6,10 @@ import { collectiveExpenses } from "./Data/expenses.js";
 import { scores, loadAddPageRoasts } from "./Data/RoastData.js";
 const expenseForm = document.getElementById('expense-form');
 const statusbox = document.querySelector('.statusbox');
+if(collectiveExpenses.length===0){
+ statusbox.innerText = 'Add Expenses To The List To Use Other Pages.'
+}
+
 function checkCustomDate() {
     const checkbox = document.querySelector('.checkbox-current-datetime ');
     const customDateTime = document.querySelector('.date-time-input');

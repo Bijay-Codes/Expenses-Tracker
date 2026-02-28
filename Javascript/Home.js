@@ -168,13 +168,6 @@ function isEdited(realData, editedData) {
         return false;
     }
 };
-/* notice i could have rendered the category and tags using just 1 for loop  or just 
-have copy pasted it but well it will just be a pain to write the code again and its not a good
-practice to write the same code 2 times manually... 
-Also i want to categorize what each function does rather than doing 2 tasks i prefer that the
-function does just 1 task that its given correctly and also in my opinion it will help me in
-debugging in some way or if i want to change something i wont break multiple stuff.
-*/
 // adds the data of the expense editing to the edit pane.
 function addOldData() {
     const oldData = getEditingExpense(editId);

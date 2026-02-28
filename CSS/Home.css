@@ -1,3 +1,21 @@
+@media (max-width:550px) {
+    .expenses-pane {
+        padding: 1.5rem;
+    }
+
+    .submit-button,
+    .cancel-button {
+        padding: 0.6rem;
+    }
+
+    .editing-pane {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+}
+
 /* Expenses pane starts here */
 .expenses-pane {
     background-color: var(--sec-bg-color);
@@ -8,7 +26,11 @@
     gap: 1rem;
     padding-top: 1%;
 }
-
+/* .expenses-pane {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+} */
 .expense-card {
     background-color: var(--main-bg-color);
     display: flex;
@@ -88,26 +110,24 @@
 /* Edit pane starts here */
 .editing {
     position: fixed;
-    top: 0;
-    bottom: 0;
-    height: 100vh;
-    width: 100vw;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--prim-bg-color);
-    opacity: 0.9;
     padding: 1rem;
+    z-index: 200;
 }
 
 .editing-pane {
-    background-color: var(--sec-bg-color);
-    padding: 10%;
-    overflow-y: auto;
-    border-radius: 12px;
-    max-height: 90vh;
+    width: 100%;
     max-width: 600px;
-    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: var(--sec-bg-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+
 }
 
 .inputs {
@@ -138,11 +158,24 @@
 
 .submit-button {
     background-color: var(--prim-green);
-    padding: 1%;
+    padding: 1.2rem;
 }
 
 .cancel-button {
     background-color: var(--sec-red);
-    padding: 1%;
+    padding: 1.2rem;
 }
 
+.tagslist {
+    max-height: 40vh;
+    max-width: 60vw;
+    overflow-y: auto;
+    cursor: pointer;
+}
+
+/* .statusbox{
+    width: 90%;
+    border-radius: 1rem;
+    background: linear-gradient(transparent, var(--sec-bg-color));
+    font-size: 1.2rem;
+} */
