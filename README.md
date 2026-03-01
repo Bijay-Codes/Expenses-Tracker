@@ -117,11 +117,9 @@ Each ratio maps to a tier (1–3), and each tier has its own set of roasts that 
 
 | Desktop | Mobile |
 |---------|--------|
-| <img src="./screenshots/desktop-home.png" width="600"/> | <img src="./screenshots/mobile-home.png" width="250"/> |
-| <img src="./screenshots/desktop-stats.png" width="600"/> | <img src="./screenshots/mobile-stats.png" width="250"/> |
-| <img src="./screenshots/desktop-roasts.png" width="600"/> | <img src="./screenshots/mobile-roasts.png" width="250"/> |
+| <img src="./screenshots/Desktop-HomePage.png" width="600"/> | <img src="./screenshots/Mobile-HomePage.png" width="250"/> |
+| <img src="./screenshots/Desktop-StatsPage.png" width="600"/> | <img src="./screenshots/Mobile-StatsPage.png" width="250"/> |
+| <img src="./screenshots/Desktop-RoastPage.png" width="600"/> | <img src="./screenshots/Mobile-RoastPage.png" width="250"/> |
 
 ---
-## License
 
-MIT — do whatever you want, but the roasts stay in.
