@@ -172,8 +172,8 @@ function getDataForChart() {
         labels.push(categoryData[0]);
         color.push(categoryColors[categoryData[0]]);
     })
-    if (data.category.others > 0) {
-        chartData.push(data.category.others);
+    if (data.others > 0) {
+        chartData.push(data.others);
         labels.push('Others');
         color.push('#475569')
     }

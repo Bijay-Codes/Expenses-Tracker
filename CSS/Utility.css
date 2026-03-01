@@ -70,7 +70,7 @@
 .filter {
     font-family: Outfit, sans-serif;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
     margin: auto;
     gap: 1rem;
