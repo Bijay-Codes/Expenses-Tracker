@@ -115,9 +115,9 @@ Each ratio maps to a tier (1–3), and each tier has its own set of roasts that 
 
 ## Screenshots
 
+ <img src="./screenshots/Desktop-HomePage.png" width="600"/>
 | Desktop | Mobile |
 |---------|--------|
-| <img src="./screenshots/Desktop-HomePage.png" width="600"/> | <img src="./screenshots/Mobile-HomePage.png" width="250"/> |
 | <img src="./screenshots/Desktop-StatsPage.png" width="600"/> | <img src="./screenshots/Mobile-StatsPage.png" width="250"/> |
 | <img src="./screenshots/Desktop-RoastPage.png" width="600"/> | <img src="./screenshots/Mobile-RoastPage.png" width="250"/> |
 

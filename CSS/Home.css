@@ -1,43 +1,15 @@
-@media (max-width:550px) {
-    .expenses-pane {
-        padding: 1.5rem;
-    }
-
-    .submit-button,
-    .cancel-button {
-        padding: 0.6rem;
-    }
-
-    .editing-pane {
-        width: 100%;
-        height: 100%;
-        overflow-y: auto;
-    }
-
-    .visibility-buttons {
-        width: fit-content;
-        min-height: 5px;
-        font-size: 1.1rem;
-    }
-
-}
-
-/* Expenses pane starts here */
+/* Expenses pane */
 .expenses-pane {
     background-color: var(--sec-bg-color);
     display: grid;
     width: 100%;
     grid-auto-rows: auto;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
-    padding-top: 1%;
+    padding: 1rem;
+    border-radius: 1rem;
 }
 
-/* .expenses-pane {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1rem;
-} */
 .expense-card {
     background-color: var(--main-bg-color);
     display: flex;
@@ -53,9 +25,7 @@
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
     color: var(--prim-text);
-
 }
-
 
 .secondary {
     font-size: 0.9rem;
@@ -83,6 +53,7 @@
     text-align: center;
     align-items: center;
     gap: 0.6rem;
+    flex-wrap: wrap;
 }
 
 .edit-button {
@@ -114,7 +85,7 @@
     box-shadow: 1px 1px 1.3rem var(--prim-bg-color);
 }
 
-/* Edit pane starts here */
+/* Edit modal overlay */
 .editing {
     position: fixed;
     inset: 0;
@@ -134,7 +105,6 @@
     background-color: var(--sec-bg-color);
     border-radius: 1rem;
     padding: 1.5rem;
-
 }
 
 .inputs {
@@ -142,39 +112,85 @@
     color: var(--prim-text);
     border: 1px solid var(--prim-border-color);
     border-radius: 999px;
-    padding: 1%;
+    text-align: center;
+    padding: 0.4rem 0.8rem;
+    width: 100%;
+    font-size: inherit;
 }
 
 .selected {
-    background-color: yellowgreen;
+    background-color: var(--prim-green);
 }
 
 .visibility-buttons {
     border: 1px solid var(--prim-border-color);
     color: var(--prim-text);
     border-radius: 1.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 .visibility-buttons:hover {
     transform: scale(1.05);
     border: 1px solid var(--prim-grey);
     border-radius: 999px;
-    transition: all 1s;
+    transition: all 0.3s;
 }
 
 .submit-button {
     background-color: var(--prim-green);
-    padding: 1.2rem;
+    padding: 0.8rem 1.5rem;
 }
 
 .cancel-button {
     background-color: var(--sec-red);
-    padding: 1.2rem;
+    padding: 0.8rem 1.5rem;
 }
 
-.tagslist {
-    max-height: 40vh;
-    max-width: 60vw;
+.footer-buttons {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.tags-list {
+    max-height: 35vh;
+    max-width: 100%;
     overflow-y: auto;
     cursor: pointer;
+}
+
+.tags-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tags-list::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+.tags-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .expenses-pane {
+        grid-template-columns: 1fr;
+        padding: 0.75rem;
+    }
+
+    .editing-pane {
+        padding: 1rem;
+        max-height: 95vh;
+    }
+
+    .submit-button,
+    .cancel-button {
+        padding: 0.6rem 1rem;
+        flex: 1;
+    }
 }

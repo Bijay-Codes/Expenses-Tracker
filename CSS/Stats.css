@@ -1,16 +1,10 @@
-@media (max-width: 550px) {
-    .stats-charts {
-        min-width: 90%;
-    }
-    .stats-pane {
-        min-width: 90%;
-    }
-}
+/* Stats page - this was the most broken on mobile */
 
 .stats-charts {
-    max-width: 50%;
+    width: 90%;
+    max-width: 600px;
     height: auto;
-    margin: auto;
+    margin: 1rem auto;
     background-color: var(--sec-bg-color);
     padding: 1rem;
     border: 2px solid var(--prim-border-color);
@@ -18,18 +12,31 @@
 }
 
 .stats-pane {
-    max-width: 60%;
+    width: 90%;
+    max-width: 700px;
     background-color: var(--sec-bg-color);
     text-align: center;
-    margin: auto;
+    margin: 1rem auto;
     border: 2px solid var(--prim-border-color);
     border-radius: 1.5rem;
+    padding: 1rem;
 }
 
 .stats-pane:hover {
     background-color: var(--main-bg-color);
     transform: scale(1.02);
     transition: all 0.5s ease;
+}
+
+#expense-form {
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+    margin: auto;
+    background-color: transparent;
+    padding: 1rem;
+    border: 0.5px solid var(--acc1);
+    border-radius: 1rem;
 }
 
 .main-stats {
@@ -58,4 +65,35 @@
 
 .keys {
     color: var(--prim-text);
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .stats-charts {
+        width: 95%;
+    }
+
+    .stats-pane {
+        width: 95%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .stats-charts {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.75rem;
+    }
+
+    .stats-pane {
+        width: 100%;
+        max-width: 100%;
+        padding: 0.75rem;
+    }
+
+    #expense-form {
+        width: 100%;
+        max-width: 100%;
+    }
 }

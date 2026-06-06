@@ -1,101 +1,25 @@
 :root {
-    /* Dark theme base (keep these) */
     --prim-bg-color: #0f0f1e;
     --sec-bg-color: #1a1a2e;
     --main-bg-color: #2a2a3e;
     --prim-border-color: #3a3a4e;
-
-    /* Text colors */
     --prim-text: #f9fafb;
     --sec-text: #9ca3af;
     --comment-text: #c4c4c4;
-
-    /* Judgment colors (for tags/cards) */
     --good-decision: #10b981;
     --bad-decision: #ef4444;
     --neutral-decision: #f59e0b;
-
-    /* Amount highlight */
     --amount-color: #fbbf24;
-
-    /* Old accent colors (can still use these for buttons) */
     --acc1: #5865f2;
     --acc2: #4752c4;
     --prim-green: #57f287;
     --sec-orange: #faa61a;
     --sec-red: #ed4245;
     --prim-grey: #6b7280;
-
-}
-
-@media (max-width:550px) {
-    .wrapper {
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 1rem;
-    }
-
-    img,
-    canvas {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .navbar-links {
-        display: flex;
-        flex-wrap: nowrap;
-        font-size: 1.2rem;
-        justify-content: center;
-        gap: 0.8rem;
-        padding: 0.5rem;
-    }
-
 }
 
 * {
     box-sizing: border-box;
-}
-
-.statusbox {
-    width: 90%;
-    margin: auto;
-    padding: 0.5rem;
-    border-radius: 1rem;
-    background: linear-gradient(transparent, var(--sec-bg-color));
-    font-size: 1.2rem;
-}
-
-/* Filters */
-.filter {
-    font-family: Outfit, sans-serif;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    margin: auto;
-    gap: 1rem;
-    width: 90%;
-    color: var(--sec-text);
-    background: linear-gradient(var(--main-bg-color), transparent);
-    border-radius: 1rem;
-    font-size: 1.2rem;
-    padding: 0.5rem;
-}
-
-.filter-selector-year {
-    border-radius: 1rem;
-    background-color: var(--sec-bg-color);
-}
-
-.filter-selector {
-    background-color: var(--sec-bg-color);
-    border-radius: 1rem;
-}
-
-.wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 1rem;
 }
 
 body {
@@ -109,27 +33,23 @@ body {
     line-height: 1.7rem;
     font-size: 1.2rem;
     overflow-x: hidden;
-
 }
 
-/* Navbar */
 a {
     text-decoration: none;
     color: inherit;
     font-family: inherit;
 }
 
+/* Navbar */
 .navbar-links {
-    height: 20%;
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: auto;
-    color: var(--prim-text);
-    gap: 1rem;
+    gap: 0.8rem;
     background-color: var(--sec-bg-color);
-    padding: 1rem;
+    padding: 0.8rem 1rem;
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--prim-border-color);
     position: sticky;
@@ -145,10 +65,9 @@ a {
     background-color: transparent;
     border: 2px solid var(--prim-border-color);
     color: var(--acc1);
-    padding: 0.3rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 999px;
     white-space: nowrap;
-
 }
 
 .tabs:hover {
@@ -167,12 +86,59 @@ a {
     transition: background-color 1.5s, color 1s;
 }
 
+/* Wrapper */
+.wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Filters */
+.filter {
+    font-family: Outfit, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    width: 100%;
+    color: var(--sec-text);
+    background: linear-gradient(var(--main-bg-color), transparent);
+    border-radius: 1rem;
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.filter-selector-year {
+    border-radius: 1rem;
+    background-color: var(--sec-bg-color);
+    color: var(--prim-text);
+    padding: 0.3rem 0.6rem;
+}
+
+.filter-selector {
+    background-color: var(--sec-bg-color);
+    border-radius: 1rem;
+    color: var(--prim-text);
+    padding: 0.3rem 0.6rem;
+}
+
+.statusbox {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    background: linear-gradient(transparent, var(--sec-bg-color));
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
 .tags-button {
     background-color: var(--prim-grey);
     color: var(--prim-text);
     border: 1px solid var(--main-bg-color);
     text-align: center;
-    padding: 0.16rem;
+    padding: 0.16rem 0.4rem;
     border-radius: 999px;
 }
 
@@ -195,4 +161,29 @@ label:hover {
 .hidden,
 .collapse {
     display: none;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    body {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .navbar-links {
+        font-size: 0.9rem;
+        gap: 0.5rem;
+        padding: 0.6rem;
+    }
+
+    .tabs {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    img,
+    canvas {
+        max-width: 100%;
+        height: auto;
+    }
 }

@@ -1,16 +1,11 @@
-@media (max-width: 550px) {
-    body{
-        line-height: 1.4;
-    }
-    
-}
 .tagline {
     color: var(--prim-text);
     text-align: center;
     font-family: 'Outfit', sans-serif;
     font-weight: 800;
     padding: 1rem;
-    margin-bottom: 30px;
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.2rem, 4vw, 2rem);
 }
 
 .monthly-roast {
@@ -27,7 +22,7 @@
 
 .monthly-roast:hover {
     box-shadow: 2px 2px 200px rgb(34, 0, 255);
-    transform: scale(1.03);
+    transform: scale(1.02);
     border-radius: 1.3rem;
     transition: all 0.5s ease-in;
 }
@@ -63,3 +58,21 @@
     margin-bottom: 5%;
 }
 
+/* Mobile */
+@media (max-width: 480px) {
+    body {
+        line-height: 1.5;
+    }
+
+    .monthly-roast {
+        padding: 0.8rem;
+    }
+
+    .monthly-roast:hover {
+        transform: none;
+    }
+
+    .hall-of-shame {
+        padding: 0.75rem;
+    }
+}
