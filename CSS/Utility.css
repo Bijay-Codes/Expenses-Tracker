@@ -73,7 +73,7 @@ a {
 .tabs:hover {
     color: blueviolet;
     transform: translateY(4%) scale(1.03);
-    transition: all 0.5s ease;
+    transition: color 0.5s ease;
 }
 
 .selected-page {
@@ -102,6 +102,7 @@ a {
     justify-content: center;
     gap: 0.8rem;
     width: 100%;
+    max-width: 400px;
     color: var(--sec-text);
     background: linear-gradient(var(--main-bg-color), transparent);
     border-radius: 1rem;
@@ -112,22 +113,23 @@ a {
 
 .filter-selector-year {
     border-radius: 1rem;
-    background-color: var(--sec-bg-color);
     color: var(--prim-text);
     padding: 0.3rem 0.6rem;
+    accent-color: var(--acc2);
 }
 
 .filter-selector {
-    background-color: var(--sec-bg-color);
     border-radius: 1rem;
     color: var(--prim-text);
     padding: 0.3rem 0.6rem;
+    accent-color: var(--acc2);
 }
 
 .statusbox {
     width: 100%;
     padding: 0.5rem 1rem;
-    border-radius: 1rem;
+    text-align: center;
+    border-radius: 0.2rem;
     background: linear-gradient(transparent, var(--sec-bg-color));
     font-size: 1.1rem;
     margin-bottom: 1rem;
@@ -155,7 +157,6 @@ a {
 
 label:hover {
     color: var(--acc1);
-    font-weight: 700;
 }
 
 .hidden,

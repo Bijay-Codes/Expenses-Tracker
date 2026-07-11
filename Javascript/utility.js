@@ -60,7 +60,7 @@ export function renderTagsList(classSelector) {
     const tagsHtml = document.querySelector(`.${classSelector}`);
     let html = 'Selected Tags (Max 4) ✏️';
     tagsList.forEach(tag => {
-        html += `<span class="tags">${tag}</span>`;
+        html += `<span class="tags">[ ${tag} ]</span>`;
     });
     tagsHtml.innerHTML = html;
 };
@@ -104,7 +104,7 @@ export function oldestAndLatestExpense() {
             }
         });
         return date;
-    }else {
+    } else {
         return dayjs().format('YYYY');
     }
 
@@ -127,7 +127,7 @@ export function renderYearFilter(classSelector) {
             html += `<option value="${i}"${i === Number(dayjs().format('YYYY')) ? 'selected' : ''}>${i}</option>`
         };
     } else {
-        html = dayjs().format('YYYY');
+        html = `<option selected value='all'>No Recent Data</option>`;
     }
     selectedDom.innerHTML = html;
 };

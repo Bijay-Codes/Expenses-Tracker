@@ -1,12 +1,15 @@
 #expense-form {
-    width: 75%;
-    max-width: 650px;
+    width: 100%;
+    max-width: 850px;
     height: auto;
     margin: auto;
     background-color: transparent;
     padding: 1rem;
     border: 0.5px solid var(--acc1);
     border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -20,10 +23,11 @@ input[type="number"]::-webkit-outer-spin-button {
     color: var(--prim-text);
     border: 1px solid var(--prim-border-color);
     border-radius: 999px;
-    text-align: center;
     padding: 0.4rem 0.8rem;
     font-size: inherit;
     width: 100%;
+    min-width: fit-content;
+    max-width: 200px;
 }
 
 .inputs:hover,

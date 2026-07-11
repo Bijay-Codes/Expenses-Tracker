@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expenses-Tracker/AddPage</title>
+    <title>Track-talk/AddPage</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=DM+Sans:wght@400;500&display=swap"
@@ -25,25 +25,25 @@
             <div class="form-header">
                 <div class="form-amount">
                     <label for="amount">Amount • </label>
-                    <input type="number" name="amount" placeholder="Enter Amount- 0.00" required class="inputs">
+                    <input type="number" id="amount" placeholder="Enter Amount- 0.00" required class="inputs">
                 </div>
                 <div class="form-category">
                     <label for="category">Category • </label>
-                    <select name="category" class="category-list select"></select>
+                    <select id="category" class="category-list select"></select>
                 </div>
             </div>
             <div class="form-body">
                 <div class="form-date-time">
                     <label for="current-date-time">Would you like to use the curent Date/Time for the Expense • </label>
-                    <input type="checkbox" name="checkbox_datetime" class="checkbox-current-datetime">
+                    <input type="checkbox" id="current-date-time" class="checkbox-current-datetime">
                     <div class="date-time-input">
                         <label for="datetime">Date & Time • </label>
-                        <input type="datetime-local" class="datetime inputs" name="datetime" required>
+                        <input type="datetime-local" class="datetime inputs" id="datetime" required>
                     </div>
                 </div>
                 <div class="form-payment-mode">
                     <label for="payment-mode">Payment Mode • </label>
-                    <select name="paymentMode" class="select">
+                    <select id="paymentMode" class="select">
                         <option value="0" selected>Online Payment</option>
                         <option value="1">Offline Payment</option>
                     </select>
@@ -55,7 +55,7 @@
             </div>
             <div class="form-footer">
                 <label for="comment">Comment • </label>
-                <textarea name="comment" placeholder="Add notes about this expense..." class="inputs"></textarea>
+                <textarea id="comment" placeholder="Add notes about this expense..." class="inputs"></textarea>
             </div>
             <button type="submit" class="add-button">Add Expense</button>
         </form>
