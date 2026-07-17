@@ -114,14 +114,14 @@ a {
     border-radius: 1rem;
     color: var(--prim-text);
     padding: 0.3rem 0.6rem;
-    accent-color: var(--acc2);
+    accent-color: var(--prim-grey);
 }
 
 .filter-selector {
     border-radius: 1rem;
     color: var(--prim-text);
     padding: 0.3rem 0.6rem;
-    accent-color: var(--acc2);
+    accent-color: var(--prim-grey);
 }
 
 .statusbox {
@@ -135,12 +135,14 @@ a {
 }
 
 .tags-button {
+    margin: 0.2rem;
     background-color: var(--prim-grey);
     color: var(--prim-text);
     border: 1px solid var(--main-bg-color);
     text-align: center;
-    padding: 0.16rem 0.4rem;
+    padding: 0.4rem 0.4rem;
     border-radius: 999px;
+    font-size: large;
 }
 
 .tags-button:hover {

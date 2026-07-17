@@ -10,12 +10,19 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    padding: 2rem;
 }
 
+/* Chrome, Safari, Edge, Opera (WebKit/Blink) */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 .inputs {
@@ -28,6 +35,11 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 100%;
     min-width: fit-content;
     max-width: 200px;
+}
+
+#current-date-time {
+    width: 20px;
+    height: 20px;
 }
 
 .inputs:hover,
@@ -94,6 +106,15 @@ select:hover {
     border-radius: 1.2rem;
     border: 1px solid var(--prim-green);
     padding: 0.7rem 1.6rem;
+}
+
+#comment {
+    width: 80%;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: var(--prim-bg-color);
+    color: var(--prim-text);
+    font-size: large;
 }
 
 /* Form sections layout */
