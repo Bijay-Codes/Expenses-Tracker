@@ -106,8 +106,9 @@ a {
     background: linear-gradient(var(--main-bg-color), transparent);
     border-radius: 1rem;
     font-size: 1.1rem;
-    padding: 0.5rem;
+    padding: 0.6rem;
     margin-bottom: 0.5rem;
+    margin: auto;
 }
 
 .filter-selector-year {

@@ -10,7 +10,6 @@ const DOMS = {
     paymentMode: document.querySelector('.payment-mode'),
     categorySection: document.querySelector('.payment-per-category'),
     top4Tags: document.querySelector('.top-4-tags'),
-    allTags: document.querySelector('.all-tags'),
     statusbox: document.querySelector('.statusbox')
 };
 renderMonths('filter-selector');
@@ -110,15 +109,15 @@ function paymentPerCategory() {
     const perCategory = document.querySelector('.payment-per-category');
     let html = '';
     for (let [key, val] of Object.entries(data.category.timesUsed)) {
-        html += `<div class="category-sec">${key} • <span class="times-used">${val}x</span></div>`;
+        html += `<div class="category-sec"><span class="category-name">${key}</span><span class="times-used">${val}x</span></div>`;
     }
     perCategory.innerHTML = html;
 };
 function top4tags() {
     const tags = document.querySelector('.top-4-tags');
-    let html = '<div class="tags-heading">Top 4 Tags </div>'
+    let html = '';
     preff.top4Tags.forEach(tag => {
-        html += `<div class="tag">${tag[0]} (<span class="times-used">${tag[1]}x</span>)</div>`;
+        html += `<div class="tag-chip">${tag[0]} <span class="times-used">${tag[1]}x</span></div>`;
     })
     tags.innerHTML = html;
 };

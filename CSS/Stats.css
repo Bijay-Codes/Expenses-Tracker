@@ -1,8 +1,9 @@
 /* Stats page - this was the most broken on mobile */
 
 .stats-charts {
-    width: 90%;
-    max-width: 600px;
+    width: 80%;
+    max-width: 700px;
+    aspect-ratio: 16 / 9;
     height: auto;
     margin: 1rem auto;
     background-color: var(--sec-bg-color);
@@ -13,19 +14,86 @@
 
 .stats-pane {
     width: 90%;
-    max-width: 700px;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
     background-color: var(--sec-bg-color);
-    text-align: center;
+    text-align: left;
     margin: 1rem auto;
     border: 2px solid var(--prim-border-color);
     border-radius: 1.5rem;
     padding: 1rem;
 }
 
-.stats-pane:hover {
+.total-spent {
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 0.5rem 0 0.75rem 0;
+    border-bottom: 1px solid var(--prim-border-color);
+}
+
+.main-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.stat-card {
     background-color: var(--main-bg-color);
-    transform: scale(1.02);
-    transition: all 0.5s ease;
+    border: 1px solid var(--prim-border-color);
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+}
+
+.stat-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.stat-label {
+    color: var(--sec-text);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.35rem;
+}
+
+/* Tag chips */
+.top-4-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag-chip {
+    background-color: var(--prim-bg-color);
+    border: 1px solid var(--prim-border-color);
+    border-radius: 999px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+/* Per-category breakdown */
+.payment-per-category {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 1rem;
+}
+
+.category-sec {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--prim-border-color);
+    font-size: 0.95rem;
+}
+
+.category-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #expense-form {
@@ -95,5 +163,13 @@
     #expense-form {
         width: 100%;
         max-width: 100%;
+    }
+
+    .main-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-per-category {
+        grid-template-columns: 1fr;
     }
 }
