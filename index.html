@@ -25,25 +25,28 @@
             <div class="form-header">
                 <div class="form-amount">
                     <label for="amount">Amount • </label>
-                    <input type="number" id="amount" placeholder="Enter Amount- 0.00" required class="inputs">
+                    <input type="number" id="amount" name="amount" placeholder="Enter Amount- 0.00" required
+                        class="inputs">
                 </div>
                 <div class="form-category">
                     <label for="category">Category • </label>
-                    <select id="category" class="category-list select"></select>
+                    <select id="category" name="category" class="category-list select"></select>
                 </div>
             </div>
             <div class="form-body">
                 <div class="form-date-time">
-                    <label for="current-date-time">Would you like to use the curent Date/Time for the Expense • </label>
-                    <input type="checkbox" id="current-date-time" class="checkbox-current-datetime">
+                    <label for="current-date-time">Would you like to use the curent Date/Time for the Expense •
+                    </label>
+                    <input type="checkbox" name="checkbox_datetime" id="current-date-time"
+                        class="checkbox-current-datetime">
                     <div class="date-time-input">
                         <label for="datetime">Date & Time • </label>
-                        <input type="datetime-local" class="datetime inputs" id="datetime" required>
+                        <input type="datetime-local" name="datetime" class="datetime inputs" id="datetime" required>
                     </div>
                 </div>
                 <div class="form-payment-mode">
                     <label for="payment-mode">Payment Mode • </label>
-                    <select id="paymentMode" class="select">
+                    <select id="paymentMode" name="paymentMode" class="select">
                         <option value="0" selected>Online Payment</option>
                         <option value="1">Offline Payment</option>
                     </select>
@@ -55,7 +58,7 @@
             </div>
             <div class="form-footer">
                 <label for="comment">Comment • </label>
-                <textarea id="comment" placeholder="Add notes about this expense..." class=""></textarea>
+                <textarea name="comment" id="comment" placeholder="Add notes about this expense..." class=""></textarea>
             </div>
             <button type="submit" class="add-button">Add Expense</button>
         </form>

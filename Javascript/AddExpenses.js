@@ -6,8 +6,8 @@ import { collectiveExpenses } from "./Data/expenses.js";
 import { scores, loadAddPageRoasts } from "./Data/RoastData.js";
 const expenseForm = document.getElementById('expense-form');
 const statusbox = document.querySelector('.statusbox');
-if(collectiveExpenses.length===0){
- statusbox.innerText = 'Add Expenses To The List To Use Other Pages.'
+if (collectiveExpenses.length === 0) {
+    statusbox.innerText = 'Add Expenses To The List To Use Other Pages.'
 }
 
 function checkCustomDate() {
@@ -45,6 +45,7 @@ expenseForm.addEventListener('submit', (submit) => {
     document.querySelector('.checkbox-current-datetime').checked = false;
     document.querySelector('.date-time-input input').setAttribute('required', 'required');
     tagsList.length = 0;
+    console.log(collectiveExpenses)
     renderTagsPane(expenseTags, 'tags-list');
     loadAddPageRoasts('statusbox', expenseData);
 });

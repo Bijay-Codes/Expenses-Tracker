@@ -120,6 +120,7 @@
 
 .selected {
     background-color: var(--prim-green);
+    color: black;
 }
 
 .visibility-buttons {
@@ -141,11 +142,13 @@
 .submit-button {
     background-color: var(--prim-green);
     padding: 0.8rem 1.5rem;
+    border-radius: 0.4rem;
 }
 
 .cancel-button {
     background-color: var(--sec-red);
     padding: 0.8rem 1.5rem;
+    border-radius: 0.4rem;
 }
 
 .footer-buttons {
@@ -161,6 +164,7 @@
     max-width: 100%;
     overflow-y: auto;
     cursor: pointer;
+    border-radius: 0.5rem;
 }
 
 .tags-list::-webkit-scrollbar {
@@ -174,6 +178,10 @@
 
 .tags-list::-webkit-scrollbar-track {
     background: transparent;
+}
+
+.comment {
+    border-radius: 0.4rem;
 }
 
 /* Mobile */
@@ -190,7 +198,7 @@
 
     .submit-button,
     .cancel-button {
-        padding: 0.6rem 1rem;
+        padding: 0.3rem 0.6rem;
         flex: 1;
     }
 }
